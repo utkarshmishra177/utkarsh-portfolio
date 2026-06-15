@@ -538,7 +538,53 @@
         <div class="card-beat">Adivasi · Land Rights · Political Economy</div>
         <a href="https://www.downtoearth.org.in/governance/mining-growth-and-inequality-after-25-years-jharkhands-development-story-is-still-unfinished" target="_blank" class="card-title-link"><div class="card-title">Mining, Growth and Inequality: After 25 Years, Jharkhand's Development Story Is Still Unfinished</div></a><a href="https://www.downtoearth.org.in/governance/mining-growth-and-inequality-after-25-years-jharkhands-development-story-is-still-unfinished" target="_blank" class="card-link">Read →</a>
       </div>
+<div class="article-card" data-beat="law" data-pub="ch">
+  <div class="card-meta">
+    <span class="outlet-badge ob-ch">Verdicto</span>
+    <span class="card-date">2026</span>
+  </div>
+  <div class="card-beat">Law & Policy</div>
+  <a href="https://verdicto.news/governor-bill-assent-delay-supreme-court-federalism-india" target="_blank" class="card-title-link">
+    <div class="card-title">Governor's Delay in Assenting to Bills and the Federalism Question</div>
+  </a>
+  <a href="https://verdicto.news/governor-bill-assent-delay-supreme-court-federalism-india" target="_blank" class="card-link">Read →</a>
+</div>
 
+<div class="article-card" data-beat="law" data-pub="ch">
+  <div class="card-meta">
+    <span class="outlet-badge ob-ch">Verdicto</span>
+    <span class="card-date">2026</span>
+  </div>
+  <div class="card-beat">Law & Policy</div>
+  <a href="https://verdicto.news/judicial-intervention-bengal-sir-supreme-court-electoral-rolls" target="_blank" class="card-title-link">
+    <div class="card-title">Judicial Intervention, Bengal's SIR Exercise and Electoral Rolls</div>
+  </a>
+  <a href="https://verdicto.news/judicial-intervention-bengal-sir-supreme-court-electoral-rolls" target="_blank" class="card-link">Read →</a>
+</div>
+
+<div class="article-card" data-beat="law climate" data-pub="ch">
+  <div class="card-meta">
+    <span class="outlet-badge ob-ch">Verdicto</span>
+    <span class="card-date">2026</span>
+  </div>
+  <div class="card-beat">Law & Policy · Climate</div>
+  <a href="https://verdicto.news/supreme-court-environment-climate-rights-development-india" target="_blank" class="card-title-link">
+    <div class="card-title">Supreme Court, Environment, Climate Rights and Development in India</div>
+  </a>
+  <a href="https://verdicto.news/supreme-court-environment-climate-rights-development-india" target="_blank" class="card-link">Read →</a>
+</div>
+
+<div class="article-card" data-beat="economy law" data-pub="ch">
+  <div class="card-meta">
+    <span class="outlet-badge ob-ch">Policy Circle</span>
+    <span class="card-date">2026</span>
+  </div>
+  <div class="card-beat">Political Economy · Law & Policy</div>
+  <a href="https://www.policycircle.org/opinion/digital-public-infrastructure-upi/" target="_blank" class="card-title-link">
+    <div class="card-title">Digital Public Infrastructure and the UPI Model</div>
+  </a>
+  <a href="https://www.policycircle.org/opinion/digital-public-infrastructure-upi/" target="_blank" class="card-link">Read →</a>
+</div>
       <!-- THE INDIA FORUM -->
 
       <div class="article-card" data-beat="labour law" data-pub="tif">
@@ -640,97 +686,6 @@
   <span>Journalist &amp; Writer · Ranchi, Jharkhand</span>
 </footer>
 
-<script>
-  let activeBeat = 'all', activePub = 'all', activeSearch = '';
-  const cards = Array.from(document.querySelectorAll('.article-card'));
-  const countEl = document.getElementById('resultsCount');
-  const noResults = document.getElementById('noResults');
-  const grid = document.getElementById('articlesGrid');
 
-  function applyFilters() {
-    let visible = 0;
-    cards.forEach(card => {
-      const beats = card.dataset.beat || '';
-      const pub = card.dataset.pub || '';
-      const title = card.querySelector('.card-title').textContent.toLowerCase();
-      const beatMatch = activeBeat === 'all' || beats.split(' ').includes(activeBeat);
-      const pubMatch = activePub === 'all' || pub === activePub;
-      const searchMatch = !activeSearch || title.includes(activeSearch);
-      const show = beatMatch && pubMatch && searchMatch;
-      card.classList.toggle('hidden', !show);
-      if (show) visible++;
-    });
-    countEl.textContent = visible + (visible === 1 ? ' article' : ' articles');
-    noResults.style.display = visible === 0 ? 'block' : 'none';
-    grid.style.display = visible === 0 ? 'none' : 'grid';
-  }
-
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const type = btn.dataset.type, val = btn.dataset.val;
-      document.querySelectorAll(`.filter-btn[data-type="${type}"]`).forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      if (type === 'beat') activeBeat = val;
-      if (type === 'pub') activePub = val;
-      applyFilters();
-    });
-  });
-
-  document.getElementById('searchInput').addEventListener('input', e => {
-    activeSearch = e.target.value.toLowerCase().trim();
-    applyFilters();
-  });
-
-  applyFilters();
-</script>
-</body>
-</html>
-<div class="article-card" data-beat="law" data-pub="ch">
-  <div class="card-meta">
-    <span class="outlet-badge ob-ch">Verdicto</span>
-    <span class="card-date">2026</span>
-  </div>
-  <div class="card-beat">Law & Policy</div>
-  <a href="https://verdicto.news/governor-bill-assent-delay-supreme-court-federalism-india" target="_blank" class="card-title-link">
-    <div class="card-title">Governor's Delay in Assenting to Bills and the Federalism Question</div>
-  </a>
-  <a href="https://verdicto.news/governor-bill-assent-delay-supreme-court-federalism-india" target="_blank" class="card-link">Read →</a>
-</div>
-
-<div class="article-card" data-beat="law" data-pub="ch">
-  <div class="card-meta">
-    <span class="outlet-badge ob-ch">Verdicto</span>
-    <span class="card-date">2026</span>
-  </div>
-  <div class="card-beat">Law & Policy</div>
-  <a href="https://verdicto.news/judicial-intervention-bengal-sir-supreme-court-electoral-rolls" target="_blank" class="card-title-link">
-    <div class="card-title">Judicial Intervention, Bengal's SIR Exercise and Electoral Rolls</div>
-  </a>
-  <a href="https://verdicto.news/judicial-intervention-bengal-sir-supreme-court-electoral-rolls" target="_blank" class="card-link">Read →</a>
-</div>
-
-<div class="article-card" data-beat="law climate" data-pub="ch">
-  <div class="card-meta">
-    <span class="outlet-badge ob-ch">Verdicto</span>
-    <span class="card-date">2026</span>
-  </div>
-  <div class="card-beat">Law & Policy · Climate</div>
-  <a href="https://verdicto.news/supreme-court-environment-climate-rights-development-india" target="_blank" class="card-title-link">
-    <div class="card-title">Supreme Court, Environment, Climate Rights and Development in India</div>
-  </a>
-  <a href="https://verdicto.news/supreme-court-environment-climate-rights-development-india" target="_blank" class="card-link">Read →</a>
-</div>
-
-<div class="article-card" data-beat="economy law" data-pub="ch">
-  <div class="card-meta">
-    <span class="outlet-badge ob-ch">Policy Circle</span>
-    <span class="card-date">2026</span>
-  </div>
-  <div class="card-beat">Political Economy · Law & Policy</div>
-  <a href="https://www.policycircle.org/opinion/digital-public-infrastructure-upi/" target="_blank" class="card-title-link">
-    <div class="card-title">Digital Public Infrastructure and the UPI Model</div>
-  </a>
-  <a href="https://www.policycircle.org/opinion/digital-public-infrastructure-upi/" target="_blank" class="card-link">Read →</a>
-</div>
 <div class="stat-num">8+</div>
 <div class="stat-label">Publications</div>
