@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Utkarsh Mishra — Journalist & Writer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1A1612; --bg: #F7F5F0; --ochre: #C17F3A;
+    --ochre-light: #F0E4D0; --grey: #8A8480;
+    --grey-light: #E5E2DC; --white: #FEFDFB;
+  }
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--ink); font-family: 'Source Serif 4', Georgia, serif; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+  /* HEADER */
+  header { position: sticky; top: 0; z-index: 100; background: var(--bg); border-bottom: 1px solid var(--grey-light); padding: 0 clamp(1.2rem,5vw,4rem); display: flex; align-items: center; justify-content: space-between; height: 54px; }
+  .header-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--ink); text-decoration: none; }
+  nav { display: flex; gap: 1.8rem; }
+  nav a { font-family: 'Inter', sans-serif; font-size: 0.78rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--grey); text-decoration: none; transition: color .2s; }
+  nav a:hover { color: var(--ink); }
+
+  /* HERO */
+  .hero { padding: clamp(2.5rem,7vw,5.5rem) clamp(1.2rem,5vw,4rem) clamp(2rem,5vw,3.5rem); display: grid; grid-template-columns: 4px 1fr; gap: 0 2.2rem; max-width: 860px; }
+  .hero-rule { background: var(--ochre); border-radius: 2px; }
+  .hero-eyebrow { font-family: 'Inter', sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--ochre); margin-bottom: .9rem; }
+  h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem,5vw,3.6rem); font-weight: 700; line-height: 1.1; letter-spacing: -.02em; margin-bottom: 1.1rem; }
+  .hero-tagline { font-size: clamp(.95rem,1.6vw,1.1rem); font-weight: 300; color: var(--grey); max-width: 540px; line-height: 1.75; }
+  .hero-beats { margin-top: 1.6rem; display: flex; flex-wrap: wrap; gap: .45rem; }
+  .beat-tag { font-family: 'Inter', sans-serif; font-size: .7rem; font-weight: 500; padding: .28rem .7rem; border: 1px solid var(--ochre-light); border-radius: 2px; color: var(--ochre); background: var(--ochre-light); letter-spacing: .04em; }
+
+  /* STATS BAR */
+  .stats-bar { border-top: 1px solid var(--grey-light); border-bottom: 1px solid var(--grey-light); padding: 1rem clamp(1.2rem,5vw,4rem); display: flex; gap: 2.5rem; flex-wrap: wrap; }
+  .stat { font-family: 'Inter', sans-serif; }
+  .stat-num { font-size: 1.4rem; font-weight: 600; color: var(--ink); letter-spacing: -.02em; }
+  .stat-label { font-size: .68rem; color: var(--grey); text-transform: uppercase; letter-spacing: .08em; margin-top: .1rem; }
+
+  /* FILTERS */
+  .filters-section { padding: 0 clamp(1.2rem,5vw,4rem); border-bottom: 1px solid var(--grey-light); position: sticky; top: 54px; z-index: 90; background: var(--bg); }
+  .filter-row { display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; }
+  .filter-row::-webkit-scrollbar { display: none; }
+  .filter-group { display: flex; align-items: center; flex-shrink: 0; }
+  .filter-label { font-family: 'Inter', sans-serif; font-size: .68rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--grey); margin-right: .9rem; white-space: nowrap; }
+  .filter-divider { width: 1px; height: 18px; background: var(--grey-light); margin: 0 1.2rem; flex-shrink: 0; align-self: center; }
+  .filter-btn { font-family: 'Inter', sans-serif; font-size: .75rem; font-weight: 500; padding: .9rem .8rem; border: none; background: transparent; color: var(--grey); cursor: pointer; white-space: nowrap; border-bottom: 2px solid transparent; transition: color .15s, border-color .15s; letter-spacing: .02em; }
+  .filter-btn:hover { color: var(--ink); }
+  .filter-btn.active { color: var(--ink); border-bottom-color: var(--ochre); font-weight: 600; }
+
+  /* SEARCH */
+  .search-wrap { padding: 1rem clamp(1.2rem,5vw,4rem) 0; }
+  .search-input { font-family: 'Inter', sans-serif; font-size: .82rem; padding: .55rem 1rem; border: 1px solid var(--grey-light); border-radius: 2px; background: var(--white); color: var(--ink); width: 100%; max-width: 360px; outline: none; transition: border-color .2s; }
+  .search-input:focus { border-color: var(--ochre); }
+  .search-input::placeholder { color: var(--grey); }
+
+  /* ARTICLES */
+  .articles-section { padding: clamp(1.2rem,3vw,2rem) clamp(1.2rem,5vw,4rem) clamp(2rem,4vw,3rem); }
+  .results-count { font-family: 'Inter', sans-serif; font-size: .73rem; color: var(--grey); margin: .8rem 0 1.2rem; letter-spacing: .03em; }
+  .articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%,320px),1fr)); gap: 1.5px; background: var(--grey-light); }
+  .article-card { background: var(--white); padding: 1.4rem 1.6rem; display: flex; flex-direction: column; gap: .5rem; transition: background .15s; }
+  .article-card:hover { background: var(--ochre-light); }
+  .article-card.hidden { display: none; }
+  .card-meta { display: flex; align-items: center; gap: .55rem; flex-wrap: wrap; }
+  .outlet-badge { font-family: 'Inter', sans-serif; font-size: .62rem; font-weight: 600; text-transform: uppercase; letter-spacing: .09em; padding: .18rem .5rem; border-radius: 2px; color: var(--white); }
+  .ob-cc { background: #3a3a1a; }
+  .ob-fii { background: #7a2d4a; }
+  .ob-dte { background: #1d5c2a; }
+  .ob-tif { background: #1a3a3a; }
+  .ob-med { background: #2a2a2a; }
+  .ob-ch { background: #4a2d0d; }
+  .card-date { font-family: 'Inter', sans-serif; font-size: .66rem; color: var(--grey); }
+  .card-beat { font-family: 'Inter', sans-serif; font-size: .65rem; color: var(--ochre); font-weight: 500; letter-spacing: .04em; text-transform: uppercase; }
+  .card-title { font-family: 'Source Serif 4', serif; font-size: .98rem; font-weight: 600; line-height: 1.4; color: var(--ink); }
+  .card-link { margin-top: auto; padding-top: .7rem; font-family: 'Inter', sans-serif; font-size: .7rem; font-weight: 600; color: var(--ochre); text-decoration: none; letter-spacing: .04em; text-transform: uppercase; }
+  .card-link:hover { text-decoration: underline; }
+  .card-title-link { text-decoration:none; color:inherit; display:block; }
+  .card-title-link:hover .card-title { color: var(--ochre); }
+  .no-results { display: none; padding: 3.5rem 0; text-align: center; color: var(--grey); font-family: 'Inter', sans-serif; font-size: .88rem; }
+
+  /* ABOUT */
+  #about { padding: clamp(2.5rem,5vw,4.5rem) clamp(1.2rem,5vw,4rem); background: var(--ink); color: var(--bg); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 3.5rem; max-width: 820px; }
+  .about-label { font-family: 'Inter', sans-serif; font-size: .68rem; font-weight: 600; text-transform: uppercase; letter-spacing: .12em; color: var(--ochre); margin-bottom: .9rem; }
+  .about-heading { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem,3vw,2.1rem); line-height: 1.2; font-weight: 400; }
+  .about-bio { font-size: .93rem; line-height: 1.8; color: #C8C4BD; font-weight: 300; }
+  .about-bio p+p { margin-top: .9rem; }
+  .about-outlets { margin-top: 1.6rem; }
+  .outlets-label { font-family: 'Inter', sans-serif; font-size: .63rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--ochre); margin-bottom: .7rem; }
+  .outlets-list { display: flex; flex-wrap: wrap; gap: .45rem; }
+  .outlet-pill { font-family: 'Inter', sans-serif; font-size: .7rem; padding: .28rem .65rem; border: 1px solid #3A3630; border-radius: 2px; color: #C8C4BD; }
+
+  /* CONTACT */
+  #contact { padding: clamp(2rem,4vw,3.5rem) clamp(1.2rem,5vw,4rem); background: var(--ink); border-top: 1px solid #2A2620; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
+  .contact-text { font-family: 'Playfair Display', serif; font-size: clamp(1rem,1.8vw,1.3rem); color: var(--bg); font-style: italic; }
+  .contact-links { display: flex; gap: 1.1rem; flex-wrap: wrap; }
+  .contact-link { font-family: 'Inter', sans-serif; font-size: .78rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--ochre); text-decoration: none; border-bottom: 1px solid var(--ochre); padding-bottom: 1px; transition: opacity .2s; }
+  .contact-link:hover { opacity: .7; }
+
+  footer { background: #110F0C; padding: 1.1rem clamp(1.2rem,5vw,4rem); font-family: 'Inter', sans-serif; font-size: .7rem; color: #4A4640; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; }
+
+  @media (max-width: 640px) { .about-grid { grid-template-columns: 1fr; gap: 1.8rem; } #contact { flex-direction: column; align-items: flex-start; } nav { gap: 1rem; } .stats-bar { gap: 1.5rem; } }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="#" class="header-name">Utkarsh Mishra</a>
+  <nav>
+    <a href="#writing">Writing</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-rule"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Journalist & Writer · Ranchi, Jharkhand</div>
+    <h1>Journalism on labour,<br>land rights, climate and political economy.</h1>
+    <p class="hero-tagline">Long-form journalism on land rights, labour, Adivasi communities, housing, and climate — published across India's leading progressive and mainstream outlets.</p>
+    <div class="hero-beats">
+      <span class="beat-tag">Land Rights</span>
+      <span class="beat-tag">Labour</span>
+      <span class="beat-tag">Adivasi &amp; Tribal</span>
+      <span class="beat-tag">Urban Housing</span>
+      <span class="beat-tag">Climate Justice</span>
+      <span class="beat-tag">International Law</span>
+      <span class="beat-tag">Migrant Workers</span>
+      <span class="beat-tag">Gender</span>
+      <span class="beat-tag">Political Economy</span>
+    </div>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="stat"><div class="stat-num">55+</div><div class="stat-label">Published pieces</div></div>
+  <div class="stat"><div class="stat-num">8+</div><div class="stat-label">Publications</div></div>
+  <div class="stat"><div class="stat-num">2024–26</div><div class="stat-label">Active period</div></div>
+</div>
+
+<div id="writing">
+  <div class="filters-section">
+    <div class="filter-row">
+      <div class="filter-group">
+        <span class="filter-label">Beat</span>
+        <button class="filter-btn active" data-type="beat" data-val="all">All</button>
+        <button class="filter-btn" data-type="beat" data-val="labour">Labour</button>
+        <button class="filter-btn" data-type="beat" data-val="climate">Climate</button>
+        <button class="filter-btn" data-type="beat" data-val="housing">Housing</button>
+        <button class="filter-btn" data-type="beat" data-val="land">Land Rights</button>
+        <button class="filter-btn" data-type="beat" data-val="adivasi">Adivasi</button>
+        <button class="filter-btn" data-type="beat" data-val="gender">Gender</button>
+        <button class="filter-btn" data-type="beat" data-val="law">Law &amp; Policy</button>
+        <button class="filter-btn" data-type="beat" data-val="economy">Political Economy</button>
+        <button class="filter-btn" data-type="beat" data-val="intl">International</button>
+      </div>
+      <div class="filter-divider"></div>
+      <div class="filter-group">
+        <span class="filter-label">Publication</span>
+        <button class="filter-btn active" data-type="pub" data-val="all">All</button>
+        <button class="filter-btn" data-type="pub" data-val="cc">Countercurrents</button>
+        <button class="filter-btn" data-type="pub" data-val="fii">Feminism in India</button>
+        <button class="filter-btn" data-type="pub" data-val="dte">Down to Earth</button>
+        <button class="filter-btn" data-type="pub" data-val="tif">The India Forum</button>
+        <button class="filter-btn" data-type="pub" data-val="med">Medium</button>
+        <button class="filter-btn" data-type="pub" data-val="ch">Chintan</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="search-wrap">
+    <input class="search-input" type="search" placeholder="Search articles…" id="searchInput" autocomplete="off">
+  </div>
+
+  <section class="articles-section">
+    <div class="results-count" id="resultsCount"></div>
+    <div class="articles-grid" id="articlesGrid">
+
+      <!-- COUNTERCURRENTS — sorted newest first, representative selection -->
+
+      <div class="article-card" data-beat="economy intl" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">15 Jun 2026</span></div>
+        <div class="card-beat">Political Economy · International</div>
+        <a href="https://countercurrents.org/2026/06/same-food-different-systems-what-venezuelas-mercal-tells-us-about-indias-pds/" target="_blank" class="card-title-link"><div class="card-title">Same Food, Different Systems: What Venezuela's Mercal Tells Us About India's PDS</div></a><a href="https://countercurrents.org/2026/06/same-food-different-systems-what-venezuelas-mercal-tells-us-about-indias-pds/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="labour economy" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">14 Jun 2026</span></div>
+        <div class="card-beat">Labour · Political Economy</div>
+        <a href="https://countercurrents.org/2026/06/the-human-cost-of-indias-informal-economy/" target="_blank" class="card-title-link"><div class="card-title">The Human Cost of India's Informal Economy</div></a><a href="https://countercurrents.org/2026/06/the-human-cost-of-indias-informal-economy/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="housing economy" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">8 Jun 2026</span></div>
+        <div class="card-beat">Housing · Political Economy</div>
+        <a href="https://countercurrents.org/2026/06/built-for-the-rich-how-indias-housing-market-priced-out-its-own-cities/" target="_blank" class="card-title-link"><div class="card-title">Built for the Rich: How India's Housing Market Priced Out Its Own Cities</div></a><a href="https://countercurrents.org/2026/06/built-for-the-rich-how-indias-housing-market-priced-out-its-own-cities/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="intl law" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">7 Jun 2026</span></div>
+        <div class="card-beat">International · Law &amp; Policy</div>
+        <a href="https://countercurrents.org/2026/06/how-latin-america-is-rewriting-international-law-and-why-the-world-should-pay-attention/" target="_blank" class="card-title-link"><div class="card-title">How Latin America Is Rewriting International Law — And Why the World Should Pay Attention</div></a><a href="https://countercurrents.org/2026/06/how-latin-america-is-rewriting-international-law-and-why-the-world-should-pay-attention/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="climate land adivasi" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">6 Jun 2026</span></div>
+        <div class="card-beat">Climate · Land Rights · Adivasi</div>
+        <a href="https://countercurrents.org/2026/06/the-green-transitions-dirty-secret-how-climate-projects-are-stripping-indigenous-land-rights/" target="_blank" class="card-title-link"><div class="card-title">The Green Transition's Dirty Secret: How Climate Projects Are Stripping Indigenous Land Rights</div></a><a href="https://countercurrents.org/2026/06/the-green-transitions-dirty-secret-how-climate-projects-are-stripping-indigenous-land-rights/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="law economy" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">5 Jun 2026</span></div>
+        <div class="card-beat">Law &amp; Policy · Political Economy</div>
+        <a href="https://countercurrents.org/2026/06/the-children-india-still-does-not-count/" target="_blank" class="card-title-link"><div class="card-title">The Children India Still Does Not Count</div></a><a href="https://countercurrents.org/2026/06/the-children-india-still-does-not-count/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="land adivasi" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">3 Jun 2026</span></div>
+        <div class="card-beat">Land Rights · Adivasi</div>
+        <a href="https://countercurrents.org/2026/06/pastoralists-sustain-indias-rangelands-policy-barely-sees-them/" target="_blank" class="card-title-link"><div class="card-title">Pastoralists Sustain India's Rangelands. Policy Barely Sees Them</div></a><a href="https://countercurrents.org/2026/06/pastoralists-sustain-indias-rangelands-policy-barely-sees-them/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="land economy" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">2 Jun 2026</span></div>
+        <div class="card-beat">Land Rights · Political Economy</div>
+        <a href="https://countercurrents.org/2026/06/who-owns-the-seed-the-corporate-takeover-indias-farmers-are-fighting/" target="_blank" class="card-title-link"><div class="card-title">Who Owns the Seed? The Corporate Takeover India's Farmers Are Fighting</div></a><a href="https://countercurrents.org/2026/06/who-owns-the-seed-the-corporate-takeover-indias-farmers-are-fighting/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="land adivasi law" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">1 Jun 2026</span></div>
+        <div class="card-beat">Land Rights · Adivasi · Law &amp; Policy</div>
+        <a href="https://countercurrents.org/2026/06/winning-rights-losing-land-why-legal-protections-have-failed-indias-tribal-communities/" target="_blank" class="card-title-link"><div class="card-title">Winning Rights, Losing Land: Why Legal Protections Have Failed India's Tribal Communities</div></a><a href="https://countercurrents.org/2026/06/winning-rights-losing-land-why-legal-protections-have-failed-indias-tribal-communities/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="climate adivasi land" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">31 May 2026</span></div>
+        <div class="card-beat">Climate · Adivasi · Land Rights</div>
+        <a href="https://countercurrents.org/2026/05/the-unmaking-of-hasdeo-how-coal-is-reshaping-a-forest-and-its-people/" target="_blank" class="card-title-link"><div class="card-title">The Unmaking of Hasdeo: How Coal Is Reshaping a Forest and Its People</div></a><a href="https://countercurrents.org/2026/05/the-unmaking-of-hasdeo-how-coal-is-reshaping-a-forest-and-its-people/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="law economy" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">30 May 2026</span></div>
+        <div class="card-beat">Law &amp; Policy · Political Economy</div>
+        <a href="https://countercurrents.org/2026/05/prison-population-explosion-how-indias-justice-system-criminalises-poverty/" target="_blank" class="card-title-link"><div class="card-title">Prison Population Explosion: How India's Justice System Criminalises Poverty</div></a><a href="https://countercurrents.org/2026/05/prison-population-explosion-how-indias-justice-system-criminalises-poverty/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="climate economy" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">29 May 2026</span></div>
+        <div class="card-beat">Climate · Political Economy</div>
+        <a href="https://countercurrents.org/2026/05/ai-data-centres-vs-water-crisis-how-digital-infrastructure-is-draining-indias-wells-dry/" target="_blank" class="card-title-link"><div class="card-title">AI Data Centres vs. Water Crisis: How Digital Infrastructure Is Draining India's Wells Dry</div></a><a href="https://countercurrents.org/2026/05/ai-data-centres-vs-water-crisis-how-digital-infrastructure-is-draining-indias-wells-dry/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="intl law" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">28 May 2026</span></div>
+        <div class="card-beat">International · Law &amp; Policy</div>
+        <a href="https://countercurrents.org/2026/05/the-promise-and-failure-of-international-law/" target="_blank" class="card-title-link"><div class="card-title">The Promise and Failure of International Law</div></a><a href="https://countercurrents.org/2026/05/the-promise-and-failure-of-international-law/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="climate economy" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">27 May 2026</span></div>
+        <div class="card-beat">Climate · Political Economy</div>
+        <a href="https://countercurrents.org/2026/05/dry-wells-empty-taps-broken-state/" target="_blank" class="card-title-link"><div class="card-title">Dry Wells, Empty Taps, Broken State</div></a><a href="https://countercurrents.org/2026/05/dry-wells-empty-taps-broken-state/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="climate land economy" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">26 May 2026</span></div>
+        <div class="card-beat">Climate · Land Rights · Political Economy</div>
+        <a href="https://countercurrents.org/2026/05/heat-debt-migration-the-real-drivers-of-indias-farm-crisis/" target="_blank" class="card-title-link"><div class="card-title">Heat, Debt, Migration: The Real Drivers of India's Farm Crisis</div></a><a href="https://countercurrents.org/2026/05/heat-debt-migration-the-real-drivers-of-indias-farm-crisis/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="economy" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">25 May 2026</span></div>
+        <div class="card-beat">Political Economy</div>
+        <a href="https://countercurrents.org/2026/05/the-tax-system-that-works-for-everyone-except-the-people-who-need-to-pay-it/" target="_blank" class="card-title-link"><div class="card-title">The Tax System That Works for Everyone Except the People Who Need to Pay It</div></a><a href="https://countercurrents.org/2026/05/the-tax-system-that-works-for-everyone-except-the-people-who-need-to-pay-it/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="law economy" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">24 May 2026</span></div>
+        <div class="card-beat">Law &amp; Policy · Political Economy</div>
+        <a href="https://countercurrents.org/2026/05/surveillance-by-welfare-how-indias-digital-safety-net-became-a-data-trap/" target="_blank" class="card-title-link"><div class="card-title">Surveillance by Welfare: How India's Digital Safety Net Became a Data Trap</div></a><a href="https://countercurrents.org/2026/05/surveillance-by-welfare-how-indias-digital-safety-net-became-a-data-trap/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="climate intl economy" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">23 May 2026</span></div>
+        <div class="card-beat">Climate · International · Political Economy</div>
+        <a href="https://countercurrents.org/2026/05/the-climate-debt-cage-how-the-global-south-is-paying-for-the-norths-emissions/" target="_blank" class="card-title-link"><div class="card-title">The Climate-Debt Cage: How the Global South Is Paying for the North's Emissions</div></a><a href="https://countercurrents.org/2026/05/the-climate-debt-cage-how-the-global-south-is-paying-for-the-norths-emissions/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="climate labour" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">22 May 2026</span></div>
+        <div class="card-beat">Climate · Labour</div>
+        <a href="https://countercurrents.org/2026/05/cities-silent-killer-heat-islands-power-cuts-and-who-bears-the-burden/" target="_blank" class="card-title-link"><div class="card-title">Cities' Silent Killer: Heat Islands, Power Cuts, and Who Bears the Burden</div></a><a href="https://countercurrents.org/2026/05/cities-silent-killer-heat-islands-power-cuts-and-who-bears-the-burden/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="climate intl" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">21 May 2026</span></div>
+        <div class="card-beat">Climate · International</div>
+        <a href="https://countercurrents.org/2026/05/why-climate-adaptation-money-never-reaches-the-frontlines/" target="_blank" class="card-title-link"><div class="card-title">Why Climate Adaptation Money Never Reaches the Frontlines</div></a><a href="https://countercurrents.org/2026/05/why-climate-adaptation-money-never-reaches-the-frontlines/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="intl economy" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">20 May 2026</span></div>
+        <div class="card-beat">International · Political Economy</div>
+        <a href="https://countercurrents.org/2026/05/india-and-china-between-competition-and-cooperation/" target="_blank" class="card-title-link"><div class="card-title">India and China: Between Competition and Cooperation</div></a><a href="https://countercurrents.org/2026/05/india-and-china-between-competition-and-cooperation/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="law economy" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">19 May 2026</span></div>
+        <div class="card-beat">Law &amp; Policy · Political Economy</div>
+        <a href="https://countercurrents.org/2026/05/indias-anti-terror-law-and-the-punishment-of-the-unconvicted/" target="_blank" class="card-title-link"><div class="card-title">India's Anti-Terror Law and the Punishment of the Unconvicted</div></a><a href="https://countercurrents.org/2026/05/indias-anti-terror-law-and-the-punishment-of-the-unconvicted/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="intl economy" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">18 May 2026</span></div>
+        <div class="card-beat">International · Political Economy</div>
+        <a href="https://countercurrents.org/2026/05/the-real-promise-of-brics-lies-in-building-alternatives/" target="_blank" class="card-title-link"><div class="card-title">The Real Promise of BRICS Lies in Building Alternatives</div></a><a href="https://countercurrents.org/2026/05/the-real-promise-of-brics-lies-in-building-alternatives/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="labour housing economy" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">17 May 2026</span></div>
+        <div class="card-beat">Labour · Housing · Political Economy</div>
+        <a href="https://countercurrents.org/2026/05/the-city-has-no-safety-net-and-it-was-always-going-to-end-this-way/" target="_blank" class="card-title-link"><div class="card-title">The City Has No Safety Net, and It Was Always Going to End This Way</div></a><a href="https://countercurrents.org/2026/05/the-city-has-no-safety-net-and-it-was-always-going-to-end-this-way/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="housing law" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">16 May 2026</span></div>
+        <div class="card-beat">Housing · Law &amp; Policy</div>
+        <a href="https://countercurrents.org/2026/05/a-home-is-not-a-commodity-india-keeps-treating-it-like-one/" target="_blank" class="card-title-link"><div class="card-title">A Home Is Not a Commodity, India Keeps Treating It Like One</div></a><a href="https://countercurrents.org/2026/05/a-home-is-not-a-commodity-india-keeps-treating-it-like-one/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="economy law" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">15 May 2026</span></div>
+        <div class="card-beat">Political Economy · Law &amp; Policy</div>
+        <a href="https://countercurrents.org/2026/05/the-classroom-that-doesnt-teach-the-degree-that-doesnt-pay/" target="_blank" class="card-title-link"><div class="card-title">The Classroom That Doesn't Teach. The Degree That Doesn't Pay</div></a><a href="https://countercurrents.org/2026/05/the-classroom-that-doesnt-teach-the-degree-that-doesnt-pay/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="labour economy" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">14 May 2026</span></div>
+        <div class="card-beat">Labour · Political Economy</div>
+        <a href="https://countercurrents.org/2026/05/%e2%82%b9200-and-a-lifetime-of-labour-indias-pension-crisis/" target="_blank" class="card-title-link"><div class="card-title">₹200 and a Lifetime of Labour: India's Pension Crisis</div></a><a href="https://countercurrents.org/2026/05/%e2%82%b9200-and-a-lifetime-of-labour-indias-pension-crisis/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="land adivasi law" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">13 May 2026</span></div>
+        <div class="card-beat">Land Rights · Adivasi · Law &amp; Policy</div>
+        <a href="https://countercurrents.org/2026/05/the-73rd-amendment-never-came-panchayats-still-dont-control-forest-land/" target="_blank" class="card-title-link"><div class="card-title">The 73rd Amendment Never Came: Panchayats Still Don't Control Forest Land</div></a><a href="https://countercurrents.org/2026/05/the-73rd-amendment-never-came-panchayats-still-dont-control-forest-land/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="economy" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">12 May 2026</span></div>
+        <div class="card-beat">Political Economy</div>
+        <a href="https://countercurrents.org/2026/05/the-patriotic-sacrifice-that-isnt-being-asked-of-everyone/" target="_blank" class="card-title-link"><div class="card-title">The Patriotic Sacrifice That Isn't Being Asked of Everyone</div></a><a href="https://countercurrents.org/2026/05/the-patriotic-sacrifice-that-isnt-being-asked-of-everyone/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="climate land intl" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">11 May 2026</span></div>
+        <div class="card-beat">Climate · Land Rights · International</div>
+        <a href="https://countercurrents.org/2026/05/the-hidden-cost-of-carbon-credits-land-grabs-in-the-global-south/" target="_blank" class="card-title-link"><div class="card-title">The Hidden Cost of Carbon Credits: Land Grabs in the Global South</div></a><a href="https://countercurrents.org/2026/05/the-hidden-cost-of-carbon-credits-land-grabs-in-the-global-south/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="intl economy" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">10 May 2026</span></div>
+        <div class="card-beat">International · Political Economy</div>
+        <a href="https://countercurrents.org/2026/05/argentinas-neoliberal-experiment-when-economic-pain-is-called-recovery/" target="_blank" class="card-title-link"><div class="card-title">Argentina's Neoliberal Experiment: When Economic Pain Is Called Recovery</div></a><a href="https://countercurrents.org/2026/05/argentinas-neoliberal-experiment-when-economic-pain-is-called-recovery/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="climate intl economy" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">9 May 2026</span></div>
+        <div class="card-beat">Climate · International · Political Economy</div>
+        <a href="https://countercurrents.org/2026/05/recycling-lie-how-rich-nations-export-their-waste-crisis/" target="_blank" class="card-title-link"><div class="card-title">Recycling Lie: How Rich Nations Export Their Waste Crisis</div></a><a href="https://countercurrents.org/2026/05/recycling-lie-how-rich-nations-export-their-waste-crisis/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="housing economy" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">8 May 2026</span></div>
+        <div class="card-beat">Housing · Political Economy</div>
+        <a href="https://countercurrents.org/2026/05/when-development-arrives-as-a-demolition-notice/" target="_blank" class="card-title-link"><div class="card-title">When Development Arrives as a Demolition Notice</div></a><a href="https://countercurrents.org/2026/05/when-development-arrives-as-a-demolition-notice/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="labour law" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">7 May 2026</span></div>
+        <div class="card-beat">Labour · Law &amp; Policy</div>
+        <a href="https://countercurrents.org/2026/05/the-deaths-we-keep-calling-accidents/" target="_blank" class="card-title-link"><div class="card-title">The Deaths We Keep Calling Accidents</div></a><a href="https://countercurrents.org/2026/05/the-deaths-we-keep-calling-accidents/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="climate labour" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">6 May 2026</span></div>
+        <div class="card-beat">Climate · Labour</div>
+        <a href="https://countercurrents.org/2026/05/indias-heat-action-plans-are-failing-street-vendors/" target="_blank" class="card-title-link"><div class="card-title">India's Heat Action Plans Are Failing Street Vendors</div></a><a href="https://countercurrents.org/2026/05/indias-heat-action-plans-are-failing-street-vendors/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="climate economy adivasi" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">5 May 2026</span></div>
+        <div class="card-beat">Climate · Adivasi · Political Economy</div>
+        <a href="https://countercurrents.org/2026/05/indias-climate-crisis-has-a-caste-address/" target="_blank" class="card-title-link"><div class="card-title">India's Climate Crisis Has a Caste Address</div></a><a href="https://countercurrents.org/2026/05/indias-climate-crisis-has-a-caste-address/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="climate labour" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">4 May 2026</span></div>
+        <div class="card-beat">Climate · Labour</div>
+        <a href="https://countercurrents.org/2026/05/when-the-temperature-rises-the-wage-falls/" target="_blank" class="card-title-link"><div class="card-title">When the Temperature Rises, the Wage Falls</div></a><a href="https://countercurrents.org/2026/05/when-the-temperature-rises-the-wage-falls/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="climate economy" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">3 May 2026</span></div>
+        <div class="card-beat">Climate · Political Economy</div>
+        <a href="https://countercurrents.org/2026/05/there-is-nothing-natural-about-indias-disasters/" target="_blank" class="card-title-link"><div class="card-title">There Is Nothing Natural About India's Disasters</div></a><a href="https://countercurrents.org/2026/05/there-is-nothing-natural-about-indias-disasters/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="labour law" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">2 May 2026</span></div>
+        <div class="card-beat">Labour · Law &amp; Policy</div>
+        <a href="https://countercurrents.org/2026/05/industrial-deaths-in-india-routine-tragedy-rare-accountability/" target="_blank" class="card-title-link"><div class="card-title">Industrial Deaths in India: Routine Tragedy, Rare Accountability</div></a><a href="https://countercurrents.org/2026/05/industrial-deaths-in-india-routine-tragedy-rare-accountability/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="labour law economy" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">1 May 2026</span></div>
+        <div class="card-beat">Labour · Law &amp; Policy · Political Economy</div>
+        <a href="https://countercurrents.org/2026/05/partners-on-paper-how-indias-labour-codes-leave-gig-workers-behind/" target="_blank" class="card-title-link"><div class="card-title">Partners on Paper: How India's Labour Codes Leave Gig Workers Behind</div></a><a href="https://countercurrents.org/2026/05/partners-on-paper-how-indias-labour-codes-leave-gig-workers-behind/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="housing economy" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">30 Apr 2026</span></div>
+        <div class="card-beat">Housing · Political Economy</div>
+        <a href="https://countercurrents.org/2026/04/the-disappearing-public-space-in-indian-cities-malls-over-parks-gates-over-access/" target="_blank" class="card-title-link"><div class="card-title">The Disappearing Public Space in Indian Cities: Malls Over Parks, Gates Over Access</div></a><a href="https://countercurrents.org/2026/04/the-disappearing-public-space-in-indian-cities-malls-over-parks-gates-over-access/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="climate labour" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">29 Apr 2026</span></div>
+        <div class="card-beat">Climate · Labour</div>
+        <a href="https://countercurrents.org/2026/04/air-conditioned-cities-heat-exposed-workers/" target="_blank" class="card-title-link"><div class="card-title">Air-Conditioned Cities, Heat-Exposed Workers</div></a><a href="https://countercurrents.org/2026/04/air-conditioned-cities-heat-exposed-workers/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="climate labour" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">28 Apr 2026</span></div>
+        <div class="card-beat">Climate · Labour</div>
+        <a href="https://countercurrents.org/2026/04/the-algorithm-doesnt-know-its-46c-and-workers-pay-the-price/" target="_blank" class="card-title-link"><div class="card-title">The Algorithm Doesn't Know It's 46°C — And Workers Pay the Price</div></a><a href="https://countercurrents.org/2026/04/the-algorithm-doesnt-know-its-46c-and-workers-pay-the-price/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="economy law" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">27 Apr 2026</span></div>
+        <div class="card-beat">Political Economy · Law &amp; Policy</div>
+        <a href="https://countercurrents.org/2026/04/inequality-is-a-policy-choice-rethinking-wealth-tax-in-india/" target="_blank" class="card-title-link"><div class="card-title">Inequality Is a Policy Choice: Rethinking Wealth Tax in India</div></a><a href="https://countercurrents.org/2026/04/inequality-is-a-policy-choice-rethinking-wealth-tax-in-india/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="intl economy climate" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">26 Apr 2026</span></div>
+        <div class="card-beat">International · Political Economy · Climate</div>
+        <a href="https://countercurrents.org/2026/04/how-nordic-clean-air-and-welfare-are-paid-for-by-the-global-south/" target="_blank" class="card-title-link"><div class="card-title">How Nordic Clean Air and Welfare Are Paid for by the Global South</div></a><a href="https://countercurrents.org/2026/04/how-nordic-clean-air-and-welfare-are-paid-for-by-the-global-south/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="labour economy law" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">25 Apr 2026</span></div>
+        <div class="card-beat">Labour · Political Economy · Law &amp; Policy</div>
+        <a href="https://countercurrents.org/2026/04/permanent-jobs-temporary-workers/" target="_blank" class="card-title-link"><div class="card-title">Permanent Jobs, Temporary Workers</div></a><a href="https://countercurrents.org/2026/04/permanent-jobs-temporary-workers/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="labour law economy" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">24 Apr 2026</span></div>
+        <div class="card-beat">Labour · Law &amp; Policy · Political Economy</div>
+        <a href="https://countercurrents.org/2026/04/in-india-minimum-wages-exist-only-on-paper/" target="_blank" class="card-title-link"><div class="card-title">In India, Minimum Wages Exist Only on Paper</div></a><a href="https://countercurrents.org/2026/04/in-india-minimum-wages-exist-only-on-paper/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="economy law" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">23 Apr 2026</span></div>
+        <div class="card-beat">Political Economy · Law &amp; Policy</div>
+        <a href="https://countercurrents.org/2026/04/when-rights-become-services-the-quiet-privatisation-of-public-life/" target="_blank" class="card-title-link"><div class="card-title">When Rights Become Services: The Quiet Privatisation of Public Life</div></a><a href="https://countercurrents.org/2026/04/when-rights-become-services-the-quiet-privatisation-of-public-life/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="climate labour law" data-pub="cc">
+        <div class="card-meta"><span class="outlet-badge ob-cc">Countercurrents</span><span class="card-date">22 Apr 2026</span></div>
+        <div class="card-beat">Climate · Labour · Law &amp; Policy</div>
+        <a href="https://countercurrents.org/2026/04/extreme-heat-and-the-missing-labour-protections-in-india/" target="_blank" class="card-title-link"><div class="card-title">Extreme Heat and the Missing Labour Protections in India</div></a><a href="https://countercurrents.org/2026/04/extreme-heat-and-the-missing-labour-protections-in-india/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <!-- FEMINISM IN INDIA -->
+
+      <div class="article-card" data-beat="gender land" data-pub="fii">
+        <div class="card-meta"><span class="outlet-badge ob-fii">Feminism in India</span><span class="card-date">27 May 2026</span></div>
+        <div class="card-beat">Gender · Land Rights</div>
+        <a href="https://feminisminindia.com/2026/05/27/indias-women-farmers-feed-the-nation-but-rarely-own-the-land/" target="_blank" class="card-title-link"><div class="card-title">India's Women Farmers Feed The Nation But Rarely Own The Land</div></a><a href="https://feminisminindia.com/2026/05/27/indias-women-farmers-feed-the-nation-but-rarely-own-the-land/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="gender housing" data-pub="fii">
+        <div class="card-meta"><span class="outlet-badge ob-fii">Feminism in India</span><span class="card-date">11 May 2026</span></div>
+        <div class="card-beat">Gender · Housing</div>
+        <a href="https://feminisminindia.com/2026/05/11/a-city-built-around-men-cannot-work-well-for-women/" target="_blank" class="card-title-link"><div class="card-title">A City Built Around Men Cannot Work Well For Women</div></a><a href="https://feminisminindia.com/2026/05/11/a-city-built-around-men-cannot-work-well-for-women/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="gender adivasi climate" data-pub="fii">
+        <div class="card-meta"><span class="outlet-badge ob-fii">Feminism in India</span><span class="card-date">5 May 2026</span></div>
+        <div class="card-beat">Gender · Adivasi · Climate</div>
+        <a href="https://feminisminindia.com/2026/05/05/what-development-costs-adivasi-women-in-jharkhands-coal-belt/" target="_blank" class="card-title-link"><div class="card-title">What Development Costs Adivasi Women In Jharkhand's Coal Belt</div></a><a href="https://feminisminindia.com/2026/05/05/what-development-costs-adivasi-women-in-jharkhands-coal-belt/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="gender labour law" data-pub="fii">
+        <div class="card-meta"><span class="outlet-badge ob-fii">Feminism in India</span><span class="card-date">30 Apr 2026</span></div>
+        <div class="card-beat">Gender · Labour · Law &amp; Policy</div>
+        <a href="https://feminisminindia.com/2026/04/30/twenty-years-of-unpaid-care-why-asha-workers-are-still-fighting-for-wages/" target="_blank" class="card-title-link"><div class="card-title">Twenty Years Of Unpaid Care: Why ASHA Workers Are Still Fighting For Wages</div></a><a href="https://feminisminindia.com/2026/04/30/twenty-years-of-unpaid-care-why-asha-workers-are-still-fighting-for-wages/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="gender labour law" data-pub="fii">
+        <div class="card-meta"><span class="outlet-badge ob-fii">Feminism in India</span><span class="card-date">21 Apr 2026</span></div>
+        <div class="card-beat">Gender · Labour · Law &amp; Policy</div>
+        <a href="https://feminisminindia.com/2026/04/21/how-welfare-discourse-erodes-womens-labour-rights-in-india/" target="_blank" class="card-title-link"><div class="card-title">How Welfare Discourse Erodes Women's Labour Rights In India</div></a><a href="https://feminisminindia.com/2026/04/21/how-welfare-discourse-erodes-womens-labour-rights-in-india/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="gender law" data-pub="fii">
+        <div class="card-meta"><span class="outlet-badge ob-fii">Feminism in India</span><span class="card-date">14 Apr 2026</span></div>
+        <div class="card-beat">Gender · Law &amp; Policy</div>
+        <a href="https://feminisminindia.com/2026/04/14/the-marital-rape-exception-what-the-law-says-and-what-it-refuses-to-see/" target="_blank" class="card-title-link"><div class="card-title">The Marital Rape Exception: What The Law Says And What It Refuses To See</div></a><a href="https://feminisminindia.com/2026/04/14/the-marital-rape-exception-what-the-law-says-and-what-it-refuses-to-see/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="gender labour law" data-pub="fii">
+        <div class="card-meta"><span class="outlet-badge ob-fii">Feminism in India</span><span class="card-date">9 Apr 2026</span></div>
+        <div class="card-beat">Gender · Labour · Law &amp; Policy</div>
+        <a href="https://feminisminindia.com/2026/04/09/domestic-workers-and-the-law-that-still-wont-see-them/" target="_blank" class="card-title-link"><div class="card-title">Domestic Workers And The Law That Still Won't See Them</div></a><a href="https://feminisminindia.com/2026/04/09/domestic-workers-and-the-law-that-still-wont-see-them/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="gender labour" data-pub="fii">
+        <div class="card-meta"><span class="outlet-badge ob-fii">Feminism in India</span><span class="card-date">13 Jan 2026</span></div>
+        <div class="card-beat">Gender · Labour</div>
+        <a href="https://feminisminindia.com/2026/01/13/invisible-by-design-how-indias-construction-sector-systematically-marginalises-women-workers/" target="_blank" class="card-title-link"><div class="card-title">Invisible By Design: How India's Construction Sector Systematically Marginalises Women Workers</div></a><a href="https://feminisminindia.com/2026/01/13/invisible-by-design-how-indias-construction-sector-systematically-marginalises-women-workers/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <!-- DOWN TO EARTH -->
+
+      <div class="article-card" data-beat="labour climate economy" data-pub="dte">
+        <div class="card-meta"><span class="outlet-badge ob-dte">Down to Earth</span><span class="card-date">15 May 2026</span></div>
+        <div class="card-beat">Labour · Climate · Political Economy</div>
+        <a href="https://www.downtoearth.org.in/waste/indias-waste-economy-runs-on-invisible-workers-climate-policy-keeps-forgetting-them" target="_blank" class="card-title-link"><div class="card-title">India's Waste Economy Runs on Invisible Workers. Climate Policy Keeps Forgetting Them</div></a><a href="https://www.downtoearth.org.in/waste/indias-waste-economy-runs-on-invisible-workers-climate-policy-keeps-forgetting-them" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="adivasi land economy" data-pub="dte">
+        <div class="card-meta"><span class="outlet-badge ob-dte">Down to Earth</span><span class="card-date">5 May 2026</span></div>
+        <div class="card-beat">Adivasi · Land Rights · Political Economy</div>
+        <a href="https://www.downtoearth.org.in/governance/mining-growth-and-inequality-after-25-years-jharkhands-development-story-is-still-unfinished" target="_blank" class="card-title-link"><div class="card-title">Mining, Growth and Inequality: After 25 Years, Jharkhand's Development Story Is Still Unfinished</div></a><a href="https://www.downtoearth.org.in/governance/mining-growth-and-inequality-after-25-years-jharkhands-development-story-is-still-unfinished" target="_blank" class="card-link">Read →</a>
+      </div>
+<div class="article-card" data-beat="law" data-pub="ch">
+  <div class="card-meta">
+    <span class="outlet-badge ob-ch">Verdicto</span>
+    <span class="card-date">2026</span>
+  </div>
+  <div class="card-beat">Law & Policy</div>
+  <a href="https://verdicto.news/governor-bill-assent-delay-supreme-court-federalism-india" target="_blank" class="card-title-link">
+    <div class="card-title">Governor's Delay in Assenting to Bills and the Federalism Question</div>
+  </a>
+  <a href="https://verdicto.news/governor-bill-assent-delay-supreme-court-federalism-india" target="_blank" class="card-link">Read →</a>
+</div>
+
+<div class="article-card" data-beat="law" data-pub="ch">
+  <div class="card-meta">
+    <span class="outlet-badge ob-ch">Verdicto</span>
+    <span class="card-date">2026</span>
+  </div>
+  <div class="card-beat">Law & Policy</div>
+  <a href="https://verdicto.news/judicial-intervention-bengal-sir-supreme-court-electoral-rolls" target="_blank" class="card-title-link">
+    <div class="card-title">Judicial Intervention, Bengal's SIR Exercise and Electoral Rolls</div>
+  </a>
+  <a href="https://verdicto.news/judicial-intervention-bengal-sir-supreme-court-electoral-rolls" target="_blank" class="card-link">Read →</a>
+</div>
+
+<div class="article-card" data-beat="law climate" data-pub="ch">
+  <div class="card-meta">
+    <span class="outlet-badge ob-ch">Verdicto</span>
+    <span class="card-date">2026</span>
+  </div>
+  <div class="card-beat">Law & Policy · Climate</div>
+  <a href="https://verdicto.news/supreme-court-environment-climate-rights-development-india" target="_blank" class="card-title-link">
+    <div class="card-title">Supreme Court, Environment, Climate Rights and Development in India</div>
+  </a>
+  <a href="https://verdicto.news/supreme-court-environment-climate-rights-development-india" target="_blank" class="card-link">Read →</a>
+</div>
+
+<div class="article-card" data-beat="economy law" data-pub="ch">
+  <div class="card-meta">
+    <span class="outlet-badge ob-ch">Policy Circle</span>
+    <span class="card-date">2026</span>
+  </div>
+  <div class="card-beat">Political Economy · Law & Policy</div>
+  <a href="https://www.policycircle.org/opinion/digital-public-infrastructure-upi/" target="_blank" class="card-title-link">
+    <div class="card-title">Digital Public Infrastructure and the UPI Model</div>
+  </a>
+  <a href="https://www.policycircle.org/opinion/digital-public-infrastructure-upi/" target="_blank" class="card-link">Read →</a>
+</div>
+
+<div class="article-card" data-beat="labour economy" data-pub="ch">
+  <div class="card-meta">
+    <span class="outlet-badge ob-ch">SPRF India</span>
+    <span class="card-date">2026</span>
+  </div>
+  <div class="card-beat">Labour · Migration · Public Policy</div>
+  <a href="https://sprf.in/counting-the-invisible-why-india-needs-a-migration-aware-labour-database/" target="_blank" class="card-title-link"><div class="card-title">Counting the Invisible: Why India Needs a Migration-Aware Labour Database</div></a>
+  <a href="https://sprf.in/counting-the-invisible-why-india-needs-a-migration-aware-labour-database/" target="_blank" class="card-link">Read →</a>
+</div>
+
+<div class="article-card" data-beat="climate environment" data-pub="cc">
+  <div class="card-meta">
+    <span class="outlet-badge ob-cc">Countercurrents</span>
+    <span class="card-date">2026</span>
+  </div>
+  <div class="card-beat">Climate · Environment</div>
+  <a href="https://countercurrents.org/2026/06/beyond-climate-change-the-seven-planetary-boundaries-weve-already-crossed/" target="_blank" class="card-title-link"><div class="card-title">Beyond Climate Change: The Seven Planetary Boundaries We've Already Crossed</div></a>
+  <a href="https://countercurrents.org/2026/06/beyond-climate-change-the-seven-planetary-boundaries-weve-already-crossed/" target="_blank" class="card-link">Read →</a>
+</div>
+
+      <!-- THE INDIA FORUM -->
+
+      <div class="article-card" data-beat="labour law" data-pub="tif">
+        <div class="card-meta"><span class="outlet-badge ob-tif">The India Forum</span><span class="card-date">19 Feb 2026</span></div>
+        <div class="card-beat">Labour · Law &amp; Policy</div>
+        <a href="https://www.theindiaforum.in/forum/law-only-paper-welfare-construction-workers" target="_blank" class="card-title-link"><div class="card-title">A Law Only on Paper: Welfare for Construction Workers</div></a><a href="https://www.theindiaforum.in/forum/law-only-paper-welfare-construction-workers" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <!-- MEDIUM -->
+
+      <div class="article-card" data-beat="economy law" data-pub="med">
+        <div class="card-meta"><span class="outlet-badge ob-med">Medium</span><span class="card-date">11 Apr 2026</span></div>
+        <div class="card-beat">Political Economy · Law &amp; Policy</div>
+        <a href="https://medium.com/@utkarshm156/ayushman-bharat-and-the-coverage-gap-why-the-poor-still-pay-for-healthcare-59b7e0a6e68c" target="_blank" class="card-title-link"><div class="card-title">Ayushman Bharat and the Coverage Gap: Why the Poor Still Pay for Healthcare</div></a><a href="https://medium.com/@utkarshm156/ayushman-bharat-and-the-coverage-gap-why-the-poor-still-pay-for-healthcare-59b7e0a6e68c" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="climate land" data-pub="med">
+        <div class="card-meta"><span class="outlet-badge ob-med">Medium</span><span class="card-date">6 Apr 2026</span></div>
+        <div class="card-beat">Climate · Land Rights</div>
+        <a href="https://medium.com/@utkarshm156/the-land-of-forests-is-running-dry-4c7bfe370bb8" target="_blank" class="card-title-link"><div class="card-title">The Land of Forests Is Running Dry: Climate Change in Jharkhand</div></a><a href="https://medium.com/@utkarshm156/the-land-of-forests-is-running-dry-4c7bfe370bb8" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="labour economy" data-pub="med">
+        <div class="card-meta"><span class="outlet-badge ob-med">Medium</span><span class="card-date">29 Mar 2026</span></div>
+        <div class="card-beat">Labour · Political Economy</div>
+        <a href="https://medium.com/@utkarshm156/7-1-trillion-profits-but-workers-cant-buy-bread-bf815a2d8c9d" target="_blank" class="card-title-link"><div class="card-title">₹7.1 Trillion Profits, But Workers Can't Buy Bread</div></a><a href="https://medium.com/@utkarshm156/7-1-trillion-profits-but-workers-cant-buy-bread-bf815a2d8c9d" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="labour law economy" data-pub="med">
+        <div class="card-meta"><span class="outlet-badge ob-med">Medium</span><span class="card-date">17 Mar 2026</span></div>
+        <div class="card-beat">Labour · Law &amp; Policy · Political Economy</div>
+        <a href="https://medium.com/@utkarshm156/the-bells-were-already-tolling-nregas-decline-before-the-new-law-sealed-its-fate-9bc39e8d679a" target="_blank" class="card-title-link"><div class="card-title">The Bells Were Already Tolling: NREGA's Decline Before the New Law Sealed Its Fate</div></a><a href="https://medium.com/@utkarshm156/the-bells-were-already-tolling-nregas-decline-before-the-new-law-sealed-its-fate-9bc39e8d679a" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <div class="article-card" data-beat="labour economy" data-pub="med">
+        <div class="card-meta"><span class="outlet-badge ob-med">Medium</span><span class="card-date">9 Feb 2026</span></div>
+        <div class="card-beat">Labour · Political Economy</div>
+        <a href="https://medium.com/@utkarshm156/the-facade-of-skilling-why-indias-migrant-workers-go-unnoticed-519f64f9ff22" target="_blank" class="card-title-link"><div class="card-title">The Facade of Skilling: Why India's Migrant Workers Go Unnoticed</div></a><a href="https://medium.com/@utkarshm156/the-facade-of-skilling-why-indias-migrant-workers-go-unnoticed-519f64f9ff22" target="_blank" class="card-link">Read →</a>
+      </div>
+
+      <!-- CHINTAN / INDIA FOUNDATION -->
+
+      <div class="article-card" data-beat="housing labour economy" data-pub="ch">
+        <div class="card-meta"><span class="outlet-badge ob-ch">Chintan</span><span class="card-date">11 May 2026</span></div>
+        <div class="card-beat">Housing · Labour · Political Economy</div>
+        <a href="https://chintan.indiafoundation.in/articles/cities-without-workers-spaces-the-missing-layer-of-urban-planning/" target="_blank" class="card-title-link"><div class="card-title">Cities Without Workers' Spaces: The Missing Layer of Urban Planning</div></a><a href="https://chintan.indiafoundation.in/articles/cities-without-workers-spaces-the-missing-layer-of-urban-planning/" target="_blank" class="card-link">Read →</a>
+      </div>
+
+    </div>
+    <div class="no-results" id="noResults">No articles match this combination. Try adjusting your filters.</div>
+  </section>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div>
+      <div class="about-label">About</div>
+      <h2 class="about-heading">Utkarsh<br>Mishra</h2>
+      <div class="about-outlets" style="margin-top:2rem;">
+        <div class="outlets-label">Published in</div>
+        <div class="outlets-list">
+          <span class="outlet-pill">Countercurrents</span>
+          <span class="outlet-pill">Feminism in India</span>
+          <span class="outlet-pill">Down to Earth</span>
+          <span class="outlet-pill">The India Forum</span>
+          <span class="outlet-pill">Medium</span>
+          <span class="outlet-pill">Chintan / India Foundation</span>
+          <span class="outlet-pill">Zee News</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="about-bio">
+        <p>I am a journalist and writer based in Ranchi, Jharkhand. My reporting covers land rights, labour, Adivasi and tribal communities, urban housing, climate justice, and international law — with sustained attention to how structural policy failures land hardest on people at the margins.</p>
+        <p>My work has appeared in Countercurrents, Feminism in India, Down to Earth, The India Forum, Chintan (India Foundation), and Zee News, among others. I report across progressive and mainstream publications simultaneously, treating journalism as both analysis and advocacy.</p>
+        <p>Before writing independently, I worked at Aajeevika Bureau on migrant labour rights — an experience that continues to shape how I approach questions of informality, welfare, and working-class life in India.</p>
+      
+        <p><strong>Email:</strong> utkarshm156@gmail.com</p>
+        <p><strong>Phone:</strong> +91 9304384102</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div id="contact">
+  <div class="contact-text">Available for commissions,<br>pitches, and collaborations.</div>
+  <div class="contact-links">
+    <a href="mailto:utkarshm156@gmail.com" class="contact-link">Email</a>
+    <a href="tel:+919304384102" class="contact-link">Phone</a>
+    <a href="https://www.linkedin.com/in/utkarsh-mishra-25b64a372" target="_blank" class="contact-link">LinkedIn</a>
+    <a href="https://medium.com/@utkarshm156" target="_blank" class="contact-link">Medium</a>
+  </div>
+</div>
+
+<footer>
+  <span>© 2026 Utkarsh Mishra</span>
+  <span>Journalist &amp; Writer · Ranchi, Jharkhand</span>
+</footer>
+
+
+<div class="stat-num">8+</div>
+<div class="stat-label">Publications</div>
