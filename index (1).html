@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Utkarsh Mishra — Policy Storyteller &amp; Investigative Journalist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#E7E4DA;
+    --paper-dark:#DCD8CB;
+    --card:#F4F2EB;
+    --ink:#1E2433;
+    --ink-soft:#4B5262;
+    --rule:#C9C3B2;
+    --ochre:#A9732C;
+    --ochre-soft:#D9B77E;
+    --verified:#2F6B5B;
+    --flag:#8C3B2E;
+    --max:1180px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.5;
+  }
+  ::selection{background:var(--ochre-soft); color:var(--ink);}
+  a{color:inherit;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 32px;}
+
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(0,0,0,0.015) 0px, rgba(0,0,0,0.015) 1px, transparent 1px, transparent 3px);
+    pointer-events:none;
+    z-index:0;
+  }
+
+  header.topbar{
+    position:sticky; top:0; z-index:50;
+    background:var(--paper);
+    border-bottom:1px solid var(--rule);
+  }
+  .topbar-inner{
+    max-width:var(--max); margin:0 auto; padding:16px 32px;
+    display:flex; align-items:center; justify-content:space-between;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px; letter-spacing:.04em; text-transform:uppercase;
+  }
+  .topbar-inner .name{font-weight:600;}
+  .topbar-inner nav a{
+    margin-left:24px; text-decoration:none; color:var(--ink-soft);
+    border-bottom:1px solid transparent; padding-bottom:2px;
+  }
+  .topbar-inner nav a:hover{color:var(--ink); border-color:var(--ochre);}
+
+  .hero{
+    position:relative;
+    padding:88px 0 64px;
+    border-bottom:1px solid var(--rule);
+    overflow:hidden;
+  }
+  .hero .wrap{position:relative; z-index:1;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--verified);
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:22px;
+  }
+  .eyebrow::before{
+    content:""; width:8px; height:8px; border-radius:50%;
+    background:var(--verified); display:inline-block;
+  }
+  h1{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:clamp(44px, 7vw, 84px);
+    line-height:0.98;
+    margin:0 0 14px;
+    letter-spacing:-0.01em;
+  }
+  h2.subtitle{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(18px, 2.4vw, 26px);
+    color:var(--ink-soft);
+    margin:0 0 28px;
+    max-width:760px;
+    line-height:1.35;
+  }
+  .hero-desc{
+    max-width:620px; font-size:16px; color:var(--ink-soft); margin-bottom:36px;
+  }
+  .hero-base{
+    font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--ink-soft);
+    margin-bottom:40px;
+  }
+
+  .stripstats{
+    display:flex; gap:0; border:1px solid var(--rule); border-radius:2px; overflow:hidden;
+    width:fit-content;
+  }
+  .stripstats div{
+    padding:16px 26px; border-right:1px solid var(--rule);
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .stripstats div:last-child{border-right:none;}
+  .stripstats .num{font-size:26px; font-weight:600; color:var(--ink); font-family:'Fraunces',serif;}
+  .stripstats .lbl{font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-soft); margin-top:2px;}
+
+  .stamp{
+    position:absolute; top:70px; right:36px;
+    width:150px; height:150px;
+    border:2.5px solid var(--flag);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    transform:rotate(-14deg);
+    opacity:.85;
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--flag);
+    text-align:center;
+  }
+  .stamp-inner{font-size:11px; letter-spacing:.12em; text-transform:uppercase; line-height:1.6;}
+  .stamp-inner b{display:block; font-size:15px; letter-spacing:.06em; margin:3px 0;}
+  @media (max-width: 760px){ .stamp{display:none;} }
+
+  .section-head{
+    padding:56px 0 20px;
+  }
+  .section-head .tag{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--ochre); margin-bottom:8px;
+  }
+  .section-head h3{
+    font-family:'Fraunces', serif; font-weight:600; font-size:32px; margin:0 0 8px;
+  }
+  .section-head p{color:var(--ink-soft); max-width:640px; margin:0; font-size:15px;}
+
+  .featured-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(320px,1fr));
+    gap:1px; background:var(--rule);
+    border:1px solid var(--rule);
+    margin-bottom:8px;
+  }
+  .fcard{
+    background:var(--card); padding:28px 26px 26px;
+    display:flex; flex-direction:column; gap:12px;
+    transition:background .15s ease;
+  }
+  .fcard:hover{background:#fbfaf5;}
+  .fcard .fmeta{
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.05em;
+    text-transform:uppercase; color:var(--ink-soft);
+  }
+  .fcard .fmeta .theme-chip{
+    color:var(--ochre); font-weight:600;
+  }
+  .fcard h4{
+    font-family:'Fraunces', serif; font-weight:600; font-size:20px; line-height:1.28; margin:0;
+  }
+  .fcard h4 a{text-decoration:none; border-bottom:1px solid transparent;}
+  .fcard h4 a:hover{border-bottom-color:var(--ink);}
+  .fcard .field{
+    font-size:13.5px; line-height:1.55;
+  }
+  .fcard .field b{
+    display:block; font-family:'IBM Plex Mono', monospace; font-size:10.5px;
+    text-transform:uppercase; letter-spacing:.07em; color:var(--verified); margin-bottom:4px; font-weight:600;
+  }
+  .fcard .readlink{
+    margin-top:auto; padding-top:8px; font-family:'IBM Plex Mono', monospace;
+    font-size:12px; text-transform:uppercase; letter-spacing:.06em;
+  }
+  .fcard .readlink a{text-decoration:none; color:var(--flag);}
+  .fcard .readlink a:hover{text-decoration:underline;}
+
+  .tabbar{
+    display:flex; gap:6px; margin-top:64px; border-bottom:1px solid var(--rule);
+    flex-wrap:wrap;
+  }
+  .tabbtn{
+    font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:.03em;
+    background:var(--paper-dark); border:1px solid var(--rule); border-bottom:none;
+    padding:14px 20px 12px; cursor:pointer; color:var(--ink-soft);
+    border-radius:6px 6px 0 0; position:relative; top:1px;
+  }
+  .tabbtn .n{font-weight:700; color:var(--ink);}
+  .tabbtn.active{
+    background:var(--card); color:var(--ink); border-color:var(--rule);
+    border-bottom:1px solid var(--card);
+  }
+  .tabbtn:hover:not(.active){color:var(--ink);}
+
+  .tabpanel{display:none; background:var(--card); border:1px solid var(--rule); border-top:none; padding:36px 36px 8px;}
+  .tabpanel.active{display:block;}
+  .theme-intro{max-width:720px; margin-bottom:28px;}
+  .theme-intro .tag{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ochre);
+    letter-spacing:.1em; text-transform:uppercase; margin-bottom:6px;
+  }
+  .theme-intro h3{font-family:'Fraunces',serif; font-size:26px; margin:0 0 8px; font-weight:600;}
+  .theme-intro p{color:var(--ink-soft); font-size:14.5px; margin:0;}
+
+  .pubfilters{
+    display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px;
+  }
+  .pf-btn{
+    font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.03em;
+    padding:6px 12px; border:1px solid var(--rule); border-radius:14px;
+    background:transparent; cursor:pointer; color:var(--ink-soft);
+  }
+  .pf-btn.active{background:var(--ink); color:var(--card); border-color:var(--ink);}
+
+  .dossier{border-top:1px solid var(--rule);}
+  .entry{
+    display:grid; grid-template-columns:64px 1fr auto; gap:18px;
+    padding:16px 0; border-bottom:1px solid var(--rule);
+    align-items:baseline;
+  }
+  .entry .cid{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ochre); font-weight:600;
+    padding-top:2px;
+  }
+  .entry .etitle{
+    font-family:'Fraunces', serif; font-size:17px; font-weight:500; line-height:1.35;
+  }
+  .entry .etitle a{text-decoration:none; border-bottom:1px solid transparent;}
+  .entry .etitle a:hover{border-bottom-color:var(--ink);}
+  .entry .emeta{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ink-soft);
+    margin-top:5px; display:flex; gap:10px; flex-wrap:wrap;
+  }
+  .entry .emeta .pub{color:var(--verified); font-weight:600;}
+  .entry .edate{
+    font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--ink-soft);
+    white-space:nowrap; text-align:right;
+  }
+  @media (max-width:640px){
+    .entry{grid-template-columns:40px 1fr; }
+    .entry .edate{grid-column:2; text-align:left; margin-top:4px;}
+  }
+
+  .count-note{
+    font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--ink-soft);
+    padding:18px 0 30px;
+  }
+
+  .about{
+    margin-top:80px; padding:60px 0; border-top:1px solid var(--rule);
+    display:grid; grid-template-columns:1fr 1.6fr; gap:56px;
+  }
+  @media (max-width:800px){ .about{grid-template-columns:1fr;} }
+  .about h3{font-family:'Fraunces',serif; font-size:30px; margin:0 0 6px;}
+  .about .role{color:var(--ochre); font-family:'IBM Plex Mono',monospace; font-size:12.5px; letter-spacing:.06em; text-transform:uppercase;}
+  .about-body p{font-size:15px; color:var(--ink-soft); line-height:1.65;}
+  .pub-list{
+    display:flex; flex-wrap:wrap; gap:8px; margin-top:18px;
+  }
+  .pub-list span{
+    font-family:'IBM Plex Mono', monospace; font-size:11.5px; border:1px solid var(--rule);
+    padding:5px 11px; border-radius:14px; color:var(--ink-soft);
+  }
+  .contact-block{margin-top:24px; display:flex; flex-direction:column; gap:8px;}
+  .contact-block a{
+    font-family:'IBM Plex Mono', monospace; font-size:13.5px; text-decoration:none;
+    color:var(--ink); border-bottom:1px solid var(--rule); padding-bottom:2px; width:fit-content;
+  }
+  .contact-block a:hover{border-color:var(--ochre); color:var(--ochre);}
+
+  footer{
+    border-top:1px solid var(--rule); padding:26px 0 60px;
+    font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--ink-soft);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <span class="name">Utkarsh Mishra</span>
+    <nav>
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="stamp">
+    <div class="stamp-inner">Filed<b>Ranchi&nbsp;JH</b>2024–26</div>
+  </div>
+  <div class="wrap">
+    <div class="eyebrow">Verified reporting · Structural policy critique</div>
+    <h1>Utkarsh Mishra</h1>
+    <h2 class="subtitle">Policy Storyteller &amp; Journalist — Specializing in Labor, Climate &amp; Public Advocacy</h2>
+    <p class="hero-desc">Long-form analytical journalism focusing on informal labor, land rights, climate/environmental policy, and constitutional governance. Experienced in translating complex secondary data and extensive field-level sourcing into high-impact public narratives across India's progressive and mainstream outlets.</p>
+    <div class="hero-base">Based in Ranchi, Jharkhand · Formerly with Aajeevika Bureau (Migrant Labor Rights)</div>
+    <div class="stripstats" id="statsStrip"></div>
+  </div>
+</section>
+
+<div class="wrap" id="work">
+
+  <div class="section-head">
+    <div class="tag">Selected investigations</div>
+    <h3>Field Files</h3>
+    <p>Six pieces that show the range of the work — from ethnographic ground reporting to data-driven policy critique.</p>
+  </div>
+
+  <div class="featured-grid" id="featuredGrid"></div>
+
+  <div class="tabbar" id="tabbar"></div>
+  <div id="tabpanels"></div>
+
+</div>
+
+<div class="wrap">
+  <section class="about" id="about">
+    <div>
+      <div class="role">About</div>
+      <h3>Utkarsh Mishra</h3>
+      <div class="pub-list" id="pubList"></div>
+    </div>
+    <div class="about-body">
+      <p>I am a journalist and writer based in Ranchi, Jharkhand. My reporting covers labour rights and the informal economy, climate and environmental policy, land and Adivasi rights, and constitutional and institutional governance — with sustained attention to how structural policy failures land hardest on people at the margins.</p>
+      <p>Before writing independently, I worked at Aajeevika Bureau on migrant labour rights — an experience that continues to shape how I approach questions of informality, welfare, and working-class life in India. My work combines field-level sourcing with verified government, judicial, and research data, and is published across progressive and mainstream outlets simultaneously.</p>
+      <div class="contact-block" id="contact">
+        <a href="mailto:utkarshm156@gmail.com">utkarshm156@gmail.com</a>
+        <a href="tel:+919304384102">+91 9304384102</a>
+        <a href="https://www.linkedin.com/in/utkarsh-mishra-25b64a372" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://medium.com/@utkarshm156" target="_blank" rel="noopener">Medium</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:10px;">
+    <span>© 2026 Utkarsh Mishra — Journalist &amp; Writer, Ranchi, Jharkhand</span>
+    <span id="footCount"></span>
+  </div>
+</footer>
+
+<script>
+const ARTICLES = [
+["The Global Economy Wasn’t Built for Everyone","https://countercurrents.org/2026/07/the-global-economy-wasnt-built-for-everyone/","Countercurrents","09 Jul 2026","C","Political Economy","International"],
+["How the World Saved the Ozone Layer — and Why We Haven’t Repeated It","https://countercurrents.org/2026/07/how-the-world-saved-the-ozone-layer-and-why-we-havent-repeated-it/","Countercurrents","08 Jul 2026","B","Climate","Environment"],
+["How Air Pollution Is Changing Rainfall, Monsoons and the Climate","https://countercurrents.org/2026/07/how-air-pollution-is-changing-rainfall-monsoons-and-the-climate/","Countercurrents","07 Jul 2026","B","Climate","Environment"],
+["Forests Are Not Just Trees. They Are How the Planet Works","https://countercurrents.org/2026/07/forests-are-not-just-trees-they-are-how-the-planet-works/","Countercurrents","06 Jul 2026","B","Climate","Environment"],
+["The Planet’s Largest Carbon Sink Is Reaching Its Limits","https://countercurrents.org/2026/07/the-planets-largest-carbon-sink-is-reaching-its-limits/","Countercurrents","05 Jul 2026","B","Climate","Environment"],
+["The Planetary Boundary We Crossed Before We Could Even Measure It","https://countercurrents.org/2026/07/the-planetary-boundary-we-crossed-before-we-could-even-measure-it/","Countercurrents","04 Jul 2026","B","Climate","Environment"],
+["The Freshwater Crisis Is Bigger Than Running Out of Water","https://countercurrents.org/2026/07/the-freshwater-crisis-is-bigger-than-running-out-of-water/","Countercurrents","03 Jul 2026","B","Climate","Water"],
+["The New Geopolitics of Hunger","https://countercurrents.org/2026/07/the-new-geopolitics-of-hunger/","Countercurrents","02 Jul 2026","B","Climate","International"],
+["Why Biodiversity Is More Than Saving Wildlife","https://countercurrents.org/2026/07/why-biodiversity-is-more-than-saving-wildlife/","Countercurrents","01 Jul 2026","B","Climate","Environment"],
+["The Fertiliser That Fed the World—and Changed the Planet","https://countercurrents.org/2026/06/the-fertiliser-that-fed-the-world-and-changed-the-planet/","Countercurrents","30 Jun 2026","B","Climate","Agriculture"],
+["Beyond Climate Change: The Seven Planetary Boundaries We’ve Already Crossed","https://countercurrents.org/2026/06/beyond-climate-change-the-seven-planetary-boundaries-weve-already-crossed/","Countercurrents","29 Jun 2026","B","Climate","Environment"],
+["Digital Colonialism: How Data Became the World’s Most Valuable Resource","https://countercurrents.org/2026/06/digital-colonialism-how-data-became-the-worlds-most-valuable-resource/","Countercurrents","28 Jun 2026","C","Political Economy","International"],
+["Public Universities, Private Logic: How India’s Higher Education Is Being Marketised from Within","https://countercurrents.org/2026/06/public-universities-private-logic-how-indias-higher-education-is-being-marketised-from-within/","Countercurrents","25 Jun 2026","C","Law & Policy","Political Economy"],
+["If AI Can Answer Every Question, What Exactly Are Libraries For?","https://countercurrents.org/2026/06/if-ai-can-answer-every-question-what-exactly-are-libraries-for/","Countercurrents","24 Jun 2026","C","Law & Policy","Political Economy"],
+["The Long Stagnation of Indian Wages","https://countercurrents.org/2026/06/the-long-stagnation-of-indian-wages/","Countercurrents","23 Jun 2026","A","Labour","Political Economy"],
+["Diplomacy Without the River’s Consent: What 50 Years of Farakka Tells Us as the Ganga Treaty Comes Up for Renewal","https://countercurrents.org/2026/06/diplomacy-without-the-rivers-consent-what-50-years-of-farakka-tells-us-as-the-ganga-treaty-comes-up-for-renewal/","Countercurrents","22 Jun 2026","B","Climate","International"],
+["India Regulates Gig Workers; China Regulates the Algorithm","https://countercurrents.org/2026/06/india-regulates-gig-workers-china-regulates-the-algorithm/","Countercurrents","21 Jun 2026","A","Labour","International"],
+["The New Scramble for Critical Minerals: Who Pays for the Green Transition?","https://countercurrents.org/2026/06/the-new-scramble-for-critical-minerals-who-pays-for-the-green-transition/","Countercurrents","19 Jun 2026","B","Climate","International"],
+["Sudan’s War Has Displaced More People Than Any Conflict on Earth: The World Has Largely Stopped Watching","https://countercurrents.org/2026/06/sudans-war-has-displaced-more-people-than-any-conflict-on-earth-the-world-has-largely-stopped-watching/","Countercurrents","18 Jun 2026","C","International","Human Rights"],
+["Climate Change Is Destroying Women’s Livelihoods","https://countercurrents.org/2026/06/climate-change-is-destroying-womens-livelihoods/","Countercurrents","17 Jun 2026","A","Labour","Climate"],
+["Who Counts as Adivasi? The Kurmi Agitation and the Battle Over Tribal Identity in Jharkhand","https://countercurrents.org/2026/06/who-counts-as-adivasi-the-kurmi-agitation-and-the-battle-over-tribal-identity-in-jharkhand/","Countercurrents","16 Jun 2026","B","Adivasi","Land Rights"],
+["Same Food, Different Systems: What Venezuela’s Mercal Tells Us About India’s PDS","https://countercurrents.org/2026/06/same-food-different-systems-what-venezuelas-mercal-tells-us-about-indias-pds/","Countercurrents","15 Jun 2026","C","Political Economy","International"],
+["The Human Cost of India’s Informal Economy","https://countercurrents.org/2026/06/the-human-cost-of-indias-informal-economy/","Countercurrents","14 Jun 2026","A","Labour","Political Economy"],
+["Built for the Rich: How India’s Housing Market Priced Out Its Own Cities","https://countercurrents.org/2026/06/built-for-the-rich-how-indias-housing-market-priced-out-its-own-cities/","Countercurrents","08 Jun 2026","C","Housing","Political Economy"],
+["How Latin America Is Rewriting International Law — And Why the World Should Pay Attention","https://countercurrents.org/2026/06/how-latin-america-is-rewriting-international-law-and-why-the-world-should-pay-attention/","Countercurrents","07 Jun 2026","C","International","Law & Policy"],
+["The Green Transition’s Dirty Secret: How Climate Projects Are Stripping Indigenous Land Rights","https://countercurrents.org/2026/06/the-green-transitions-dirty-secret-how-climate-projects-are-stripping-indigenous-land-rights/","Countercurrents","06 Jun 2026","B","Climate","Land Rights"],
+["The Children India Still Does Not Count","https://countercurrents.org/2026/06/the-children-india-still-does-not-count/","Countercurrents","05 Jun 2026","C","Law & Policy","Political Economy"],
+["Pastoralists Sustain India’s Rangelands. Policy Barely Sees Them","https://countercurrents.org/2026/06/pastoralists-sustain-indias-rangelands-policy-barely-sees-them/","Countercurrents","03 Jun 2026","B","Land Rights","Adivasi"],
+["Who Owns the Seed? The Corporate Takeover India’s Farmers Are Fighting","https://countercurrents.org/2026/06/who-owns-the-seed-the-corporate-takeover-indias-farmers-are-fighting/","Countercurrents","02 Jun 2026","B","Land Rights","Political Economy"],
+["Winning Rights, Losing Land: Why Legal Protections Have Failed India’s Tribal Communities","https://countercurrents.org/2026/06/winning-rights-losing-land-why-legal-protections-have-failed-indias-tribal-communities/","Countercurrents","01 Jun 2026","B","Land Rights","Adivasi"],
+["The Unmaking of Hasdeo: How Coal Is Reshaping a Forest and Its People","https://countercurrents.org/2026/05/the-unmaking-of-hasdeo-how-coal-is-reshaping-a-forest-and-its-people/","Countercurrents","31 May 2026","B","Climate","Adivasi"],
+["Prison Population Explosion: How India’s Justice System Criminalises Poverty","https://countercurrents.org/2026/05/prison-population-explosion-how-indias-justice-system-criminalises-poverty/","Countercurrents","30 May 2026","C","Law & Policy","Political Economy"],
+["AI Data Centres vs. Water Crisis: How Digital Infrastructure Is Draining India’s Wells Dry","https://countercurrents.org/2026/05/ai-data-centres-vs-water-crisis-how-digital-infrastructure-is-draining-indias-wells-dry/","Countercurrents","29 May 2026","B","Climate","Political Economy"],
+["The Promise and Failure of International Law","https://countercurrents.org/2026/05/the-promise-and-failure-of-international-law/","Countercurrents","28 May 2026","C","International","Law & Policy"],
+["Dry Wells, Empty Taps, Broken State","https://countercurrents.org/2026/05/dry-wells-empty-taps-broken-state/","Countercurrents","27 May 2026","B","Climate","Political Economy"],
+["Heat, Debt, Migration: The Real Drivers of India’s Farm Crisis","https://countercurrents.org/2026/05/heat-debt-migration-the-real-drivers-of-indias-farm-crisis/","Countercurrents","26 May 2026","B","Climate","Land Rights"],
+["The Tax System That Works for Everyone Except the People Who Need to Pay It","https://countercurrents.org/2026/05/the-tax-system-that-works-for-everyone-except-the-people-who-need-to-pay-it/","Countercurrents","25 May 2026","C","Political Economy"],
+["Surveillance by Welfare: How India’s Digital Safety Net Became a Data Trap","https://countercurrents.org/2026/05/surveillance-by-welfare-how-indias-digital-safety-net-became-a-data-trap/","Countercurrents","24 May 2026","C","Law & Policy","Political Economy"],
+["The Climate-Debt Cage: How the Global South Is Paying for the North’s Emissions","https://countercurrents.org/2026/05/the-climate-debt-cage-how-the-global-south-is-paying-for-the-norths-emissions/","Countercurrents","23 May 2026","B","Climate","International"],
+["Cities’ Silent Killer: Heat Islands, Power Cuts, and Who Bears the Burden","https://countercurrents.org/2026/05/cities-silent-killer-heat-islands-power-cuts-and-who-bears-the-burden/","Countercurrents","22 May 2026","A","Climate","Labour"],
+["Why Climate Adaptation Money Never Reaches the Frontlines","https://countercurrents.org/2026/05/why-climate-adaptation-money-never-reaches-the-frontlines/","Countercurrents","21 May 2026","B","Climate","International"],
+["India and China: Between Competition and Cooperation","https://countercurrents.org/2026/05/india-and-china-between-competition-and-cooperation/","Countercurrents","20 May 2026","C","International","Political Economy"],
+["India’s Anti-Terror Law and the Punishment of the Unconvicted","https://countercurrents.org/2026/05/indias-anti-terror-law-and-the-punishment-of-the-unconvicted/","Countercurrents","19 May 2026","C","Law & Policy","Political Economy"],
+["The Real Promise of BRICS Lies in Building Alternatives","https://countercurrents.org/2026/05/the-real-promise-of-brics-lies-in-building-alternatives/","Countercurrents","18 May 2026","C","International","Political Economy"],
+["The City Has No Safety Net, and It Was Always Going to End This Way","https://countercurrents.org/2026/05/the-city-has-no-safety-net-and-it-was-always-going-to-end-this-way/","Countercurrents","17 May 2026","A","Labour","Housing"],
+["A Home Is Not a Commodity, India Keeps Treating It Like One","https://countercurrents.org/2026/05/a-home-is-not-a-commodity-india-keeps-treating-it-like-one/","Countercurrents","16 May 2026","C","Housing","Law & Policy"],
+["The Classroom That Doesn’t Teach. The Degree That Doesn’t Pay","https://countercurrents.org/2026/05/the-classroom-that-doesnt-teach-the-degree-that-doesnt-pay/","Countercurrents","15 May 2026","C","Political Economy","Law & Policy"],
+["₹200 and a Lifetime of Labour: India’s Pension Crisis","https://countercurrents.org/2026/05/%e2%82%b9200-and-a-lifetime-of-labour-indias-pension-crisis/","Countercurrents","14 May 2026","A","Labour","Political Economy"],
+["The 73rd Amendment Never Came: Panchayats Still Don’t Control Forest Land","https://countercurrents.org/2026/05/the-73rd-amendment-never-came-panchayats-still-dont-control-forest-land/","Countercurrents","13 May 2026","B","Land Rights","Adivasi"],
+["The Patriotic Sacrifice That Isn’t Being Asked of Everyone","https://countercurrents.org/2026/05/the-patriotic-sacrifice-that-isnt-being-asked-of-everyone/","Countercurrents","12 May 2026","C","Political Economy"],
+["The Hidden Cost of Carbon Credits: Land Grabs in the Global South","https://countercurrents.org/2026/05/the-hidden-cost-of-carbon-credits-land-grabs-in-the-global-south/","Countercurrents","11 May 2026","B","Climate","Land Rights"],
+["Argentina’s Neoliberal Experiment: When Economic Pain Is Called Recovery","https://countercurrents.org/2026/05/argentinas-neoliberal-experiment-when-economic-pain-is-called-recovery/","Countercurrents","10 May 2026","C","International","Political Economy"],
+["Recycling Lie: How Rich Nations Export Their Waste Crisis","https://countercurrents.org/2026/05/recycling-lie-how-rich-nations-export-their-waste-crisis/","Countercurrents","09 May 2026","B","Climate","International"],
+["When Development Arrives as a Demolition Notice","https://countercurrents.org/2026/05/when-development-arrives-as-a-demolition-notice/","Countercurrents","08 May 2026","C","Housing","Political Economy"],
+["The Deaths We Keep Calling Accidents","https://countercurrents.org/2026/05/the-deaths-we-keep-calling-accidents/","Countercurrents","07 May 2026","A","Labour","Law & Policy"],
+["India’s Heat Action Plans Are Failing Street Vendors","https://countercurrents.org/2026/05/indias-heat-action-plans-are-failing-street-vendors/","Countercurrents","06 May 2026","A","Climate","Labour"],
+["India’s Climate Crisis Has a Caste Address","https://countercurrents.org/2026/05/indias-climate-crisis-has-a-caste-address/","Countercurrents","05 May 2026","B","Climate","Adivasi"],
+["When the Temperature Rises, the Wage Falls","https://countercurrents.org/2026/05/when-the-temperature-rises-the-wage-falls/","Countercurrents","04 May 2026","A","Climate","Labour"],
+["There Is Nothing Natural About India’s Disasters","https://countercurrents.org/2026/05/there-is-nothing-natural-about-indias-disasters/","Countercurrents","03 May 2026","B","Climate","Political Economy"],
+["Industrial Deaths in India: Routine Tragedy, Rare Accountability","https://countercurrents.org/2026/05/industrial-deaths-in-india-routine-tragedy-rare-accountability/","Countercurrents","02 May 2026","A","Labour","Law & Policy"],
+["Partners on Paper: How India’s Labour Codes Leave Gig Workers Behind","https://countercurrents.org/2026/05/partners-on-paper-how-indias-labour-codes-leave-gig-workers-behind/","Countercurrents","01 May 2026","A","Labour","Law & Policy"],
+["The Disappearing Public Space in Indian Cities: Malls Over Parks, Gates Over Access","https://countercurrents.org/2026/04/the-disappearing-public-space-in-indian-cities-malls-over-parks-gates-over-access/","Countercurrents","30 Apr 2026","C","Housing","Political Economy"],
+["Air-Conditioned Cities, Heat-Exposed Workers","https://countercurrents.org/2026/04/air-conditioned-cities-heat-exposed-workers/","Countercurrents","29 Apr 2026","A","Climate","Labour"],
+["The Algorithm Doesn’t Know It’s 46°C — And Workers Pay the Price","https://countercurrents.org/2026/04/the-algorithm-doesnt-know-its-46c-and-workers-pay-the-price/","Countercurrents","28 Apr 2026","A","Climate","Labour"],
+["Inequality Is a Policy Choice: Rethinking Wealth Tax in India","https://countercurrents.org/2026/04/inequality-is-a-policy-choice-rethinking-wealth-tax-in-india/","Countercurrents","27 Apr 2026","C","Political Economy","Law & Policy"],
+["How Nordic Clean Air and Welfare Are Paid for by the Global South","https://countercurrents.org/2026/04/how-nordic-clean-air-and-welfare-are-paid-for-by-the-global-south/","Countercurrents","26 Apr 2026","B","International","Climate"],
+["Permanent Jobs, Temporary Workers","https://countercurrents.org/2026/04/permanent-jobs-temporary-workers/","Countercurrents","25 Apr 2026","A","Labour","Political Economy"],
+["In India, Minimum Wages Exist Only on Paper","https://countercurrents.org/2026/04/in-india-minimum-wages-exist-only-on-paper/","Countercurrents","24 Apr 2026","A","Labour","Law & Policy"],
+["When Rights Become Services: The Quiet Privatisation of Public Life","https://countercurrents.org/2026/04/when-rights-become-services-the-quiet-privatisation-of-public-life/","Countercurrents","23 Apr 2026","C","Political Economy","Law & Policy"],
+["Extreme Heat and the Missing Labour Protections in India","https://countercurrents.org/2026/04/extreme-heat-and-the-missing-labour-protections-in-india/","Countercurrents","22 Apr 2026","A","Climate","Labour"],
+["India’s Women Farmers Feed The Nation But Rarely Own The Land","https://feminisminindia.com/2026/05/27/indias-women-farmers-feed-the-nation-but-rarely-own-the-land/","Feminism in India","27 May 2026","C","Gender","Land Rights"],
+["A City Built Around Men Cannot Work Well For Women","https://feminisminindia.com/2026/05/11/a-city-built-around-men-cannot-work-well-for-women/","Feminism in India","11 May 2026","C","Gender","Housing"],
+["What Development Costs Adivasi Women In Jharkhand’s Coal Belt","https://feminisminindia.com/2026/05/05/what-development-costs-adivasi-women-in-jharkhands-coal-belt/","Feminism in India","05 May 2026","C","Gender","Adivasi"],
+["Twenty Years Of Unpaid Care: Why ASHA Workers Are Still Fighting For Wages","https://feminisminindia.com/2026/04/30/twenty-years-of-unpaid-care-why-asha-workers-are-still-fighting-for-wages/","Feminism in India","30 Apr 2026","C","Gender","Labour"],
+["How Welfare Discourse Erodes Women’s Labour Rights In India","https://feminisminindia.com/2026/04/21/how-welfare-discourse-erodes-womens-labour-rights-in-india/","Feminism in India","21 Apr 2026","C","Gender","Labour"],
+["The Marital Rape Exception: What The Law Says And What It Refuses To See","https://feminisminindia.com/2026/04/14/the-marital-rape-exception-what-the-law-says-and-what-it-refuses-to-see/","Feminism in India","14 Apr 2026","C","Gender","Law & Policy"],
+["Domestic Workers And The Law That Still Won’t See Them","https://feminisminindia.com/2026/04/09/domestic-workers-and-the-law-that-still-wont-see-them/","Feminism in India","09 Apr 2026","C","Gender","Labour"],
+["Invisible By Design: How India’s Construction Sector Systematically Marginalises Women Workers","https://feminisminindia.com/2026/01/13/invisible-by-design-how-indias-construction-sector-systematically-marginalises-women-workers/","Feminism in India","13 Jan 2026","C","Gender","Labour"],
+["India’s Waste Economy Runs on Invisible Workers. Climate Policy Keeps Forgetting Them","https://www.downtoearth.org.in/waste/indias-waste-economy-runs-on-invisible-workers-climate-policy-keeps-forgetting-them","Down to Earth","15 May 2026","A","Labour","Climate"],
+["Mining, Growth and Inequality: After 25 Years, Jharkhand’s Development Story Is Still Unfinished","https://www.downtoearth.org.in/governance/mining-growth-and-inequality-after-25-years-jharkhands-development-story-is-still-unfinished","Down to Earth","05 May 2026","B","Adivasi","Land Rights"],
+["Governor’s Delay in Assenting to Bills and the Federalism Question","https://verdicto.news/governor-bill-assent-delay-supreme-court-federalism-india","Verdicto","2026","C","Law & Policy"],
+["Judicial Intervention, Bengal’s SIR Exercise and Electoral Rolls","https://verdicto.news/judicial-intervention-bengal-sir-supreme-court-electoral-rolls","Verdicto","2026","C","Law & Policy"],
+["Supreme Court, Environment, Climate Rights and Development in India","https://verdicto.news/supreme-court-environment-climate-rights-development-india","Verdicto","2026","C","Law & Policy","Climate"],
+["Digital Public Infrastructure and the UPI Model","https://www.policycircle.org/opinion/digital-public-infrastructure-upi/","Policy Circle","2026","C","Political Economy","Law & Policy"],
+["Counting the Invisible: Why India Needs a Migration-Aware Labour Database","https://sprf.in/counting-the-invisible-why-india-needs-a-migration-aware-labour-database/","SPRF India","2026","A","Labour","Migration"],
+["A Law Only on Paper: Welfare for Construction Workers","https://www.theindiaforum.in/forum/law-only-paper-welfare-construction-workers","The India Forum","19 Feb 2026","C","Labour","Law & Policy"],
+["Ayushman Bharat and the Coverage Gap: Why the Poor Still Pay for Healthcare","https://medium.com/@utkarshm156/ayushman-bharat-and-the-coverage-gap-why-the-poor-still-pay-for-healthcare-59b7e0a6e68c","Medium","11 Apr 2026","C","Political Economy","Law & Policy"],
+["The Land of Forests Is Running Dry: Climate Change in Jharkhand","https://medium.com/@utkarshm156/the-land-of-forests-is-running-dry-4c7bfe370bb8","Medium","06 Apr 2026","B","Climate","Land Rights"],
+["₹7.1 Trillion Profits, But Workers Can’t Buy Bread","https://medium.com/@utkarshm156/7-1-trillion-profits-but-workers-cant-buy-bread-bf815a2d8c9d","Medium","29 Mar 2026","A","Labour","Political Economy"],
+["The Bells Were Already Tolling: NREGA’s Decline Before the New Law Sealed Its Fate","https://medium.com/@utkarshm156/the-bells-were-already-tolling-nregas-decline-before-the-new-law-sealed-its-fate-9bc39e8d679a","Medium","17 Mar 2026","A","Labour","Law & Policy"],
+["The Facade of Skilling: Why India’s Migrant Workers Go Unnoticed","https://medium.com/@utkarshm156/the-facade-of-skilling-why-indias-migrant-workers-go-unnoticed-519f64f9ff22","Medium","09 Feb 2026","A","Labour","Political Economy"],
+["Cities Without Workers’ Spaces: The Missing Layer of Urban Planning","https://chintan.indiafoundation.in/articles/cities-without-workers-spaces-the-missing-layer-of-urban-planning/","Chintan","11 May 2026","A","Housing","Labour"]
+];
+
+const THEMES = {
+  A:{
+    label:"Labor Dynamics & The Informal Economy",
+    tag:"Theme A",
+    desc:"Wages, gig and platform work, migrant labour, and the field-level realities of India's informal workforce — including data and sourcing developed during a fellowship at Aajeevika Bureau."
+  },
+  B:{
+    label:"Climate Resilience & Rural Systems",
+    tag:"Theme B",
+    desc:"Agriculture, water, land and forest rights, and the planetary-boundary science underneath India's resource distress and environmental policy failures."
+  },
+  C:{
+    label:"Public Law & Institutional Governance",
+    tag:"Theme C",
+    desc:"Constitutional law, judicial review, gender and structural policy critique — reported for The India Forum, Feminism in India, Verdicto, and other legal and policy outlets."
+  }
+};
+
+const FEATURED = [
+  {
+    ttl:"The Human Cost of India’s Informal Economy",
+    url:"https://countercurrents.org/2026/06/the-human-cost-of-indias-informal-economy/",
+    pub:"Countercurrents", theme:"A",
+    insight:"India's informal economy employs roughly 90% of the workforce and produces close to half of GDP while sitting almost entirely outside the reach of labour law.",
+    method:"Synthesised national labour-force survey data with field patterns drawn from prior migrant-worker fieldwork at Aajeevika Bureau."
+  },
+  {
+    ttl:"India Regulates Gig Workers; China Regulates the Algorithm",
+    url:"https://countercurrents.org/2026/06/india-regulates-gig-workers-china-regulates-the-algorithm/",
+    pub:"Countercurrents", theme:"A",
+    insight:"A side-by-side reading of China's 2026 platform-labour framework against India's gig-worker rules exposes how differently the two states choose to regulate algorithmic control.",
+    method:"Comparative policy analysis built from primary regulatory texts and cross-referenced labour-code provisions."
+  },
+  {
+    ttl:"The Unmaking of Hasdeo: How Coal Is Reshaping a Forest and Its People",
+    url:"https://countercurrents.org/2026/05/the-unmaking-of-hasdeo-how-coal-is-reshaping-a-forest-and-its-people/",
+    pub:"Countercurrents", theme:"B",
+    insight:"Roughly 18,000 Adivasi residents of Chhattisgarh's Hasdeo Arand forest are watching generations-old forest cover disappear tree by tree to coal mining.",
+    method:"District-level displacement and forest-cover data combined with community and civil-society testimony from the Hasdeo region."
+  },
+  {
+    ttl:"Beyond Climate Change: The Seven Planetary Boundaries We’ve Already Crossed",
+    url:"https://countercurrents.org/2026/06/beyond-climate-change-the-seven-planetary-boundaries-weve-already-crossed/",
+    pub:"Countercurrents", theme:"B",
+    insight:"Opens a ten-part series arguing that climate change is only one of at least seven Earth-system boundaries human activity has already pushed past.",
+    method:"Synthesised peer-reviewed planetary-boundaries research into an accessible framework carried across the full ten-part series."
+  },
+  {
+    ttl:"Surveillance by Welfare: How India’s Digital Safety Net Became a Data Trap",
+    url:"https://countercurrents.org/2026/05/surveillance-by-welfare-how-indias-digital-safety-net-became-a-data-trap/",
+    pub:"Countercurrents", theme:"C",
+    insight:"Access to rations, pensions and health insurance is now conditioned on an Aadhaar-linked data exchange that citizens cannot meaningfully opt out of.",
+    method:"Verified claims against government digital-ID documentation and prior authentication-failure records before publication."
+  },
+  {
+    ttl:"Domestic Workers And The Law That Still Won’t See Them",
+    url:"https://feminisminindia.com/2026/04/09/domestic-workers-and-the-law-that-still-wont-see-them/",
+    pub:"Feminism in India", theme:"C",
+    insight:"India has no central law recognising domestic workers as workers, leaving millions — overwhelmingly women — without minimum-wage or social-security protection.",
+    method:"Legal-gap analysis paired with secondary quotes from domestic-worker rights organisations, per Feminism in India's editorial standard."
+  }
+];
+
+const themeCount = {A:0,B:0,C:0};
+ARTICLES.forEach(a=>themeCount[a[4]]++);
+const pubs = [...new Set(ARTICLES.map(a=>a[2]))];
+
+document.getElementById('statsStrip').innerHTML = `
+  <div><div class="num">${ARTICLES.length}+</div><div class="lbl">Published pieces</div></div>
+  <div><div class="num">${pubs.length}</div><div class="lbl">Publications</div></div>
+  <div><div class="num">3</div><div class="lbl">Sector themes</div></div>
+  <div><div class="num">2024–26</div><div class="lbl">Active period</div></div>
+`;
+document.getElementById('footCount').textContent = `${ARTICLES.length}+ pieces filed across ${pubs.length} publications`;
+
+document.getElementById('pubList').innerHTML = pubs.map(p=>`<span>${p}</span>`).join('');
+
+document.getElementById('featuredGrid').innerHTML = FEATURED.map(f=>`
+  <article class="fcard">
+    <div class="fmeta"><span>${f.pub}</span><span class="theme-chip">${THEMES[f.theme].tag}</span></div>
+    <h4><a href="${f.url}" target="_blank" rel="noopener">${f.ttl}</a></h4>
+    <div class="field"><b>The Ground Insight</b>${f.insight}</div>
+    <div class="field"><b>Methodology Used</b>${f.method}</div>
+    <div class="readlink"><a href="${f.url}" target="_blank" rel="noopener">Read the piece →</a></div>
+  </article>
+`).join('');
+
+const tabbar = document.getElementById('tabbar');
+const panels = document.getElementById('tabpanels');
+const order = ['A','B','C'];
+
+tabbar.innerHTML = order.map((k,i)=>`
+  <button class="tabbtn ${i===0?'active':''}" data-theme="${k}">
+    ${THEMES[k].tag} <span class="n">· ${themeCount[k]}</span>
+  </button>
+`).join('');
+
+panels.innerHTML = order.map((k,i)=>{
+  const items = ARTICLES.filter(a=>a[4]===k);
+  const pubSet = [...new Set(items.map(a=>a[2]))];
+  const rows = items.map((a,idx)=>`
+    <div class="entry" data-pub="${a[2]}">
+      <div class="cid">${k}-${String(idx+1).padStart(3,'0')}</div>
+      <div>
+        <div class="etitle"><a href="${a[1]}" target="_blank" rel="noopener">${a[0]}</a></div>
+        <div class="emeta"><span class="pub">${a[2]}</span><span>${a[5]}</span>${a[6]?`<span>· ${a[6]}</span>`:''}</div>
+      </div>
+      <div class="edate">${a[3]}</div>
+    </div>
+  `).join('');
+  return `
+    <div class="tabpanel ${i===0?'active':''}" data-panel="${k}">
+      <div class="theme-intro">
+        <div class="tag">${THEMES[k].tag}</div>
+        <h3>${THEMES[k].label}</h3>
+        <p>${THEMES[k].desc}</p>
+      </div>
+      <div class="pubfilters" data-filterfor="${k}">
+        <button class="pf-btn active" data-pub="all">All (${items.length})</button>
+        ${pubSet.map(p=>`<button class="pf-btn" data-pub="${p}">${p} (${items.filter(a=>a[2]===p).length})</button>`).join('')}
+      </div>
+      <div class="dossier">${rows}</div>
+      <div class="count-note">${items.length} pieces filed under ${THEMES[k].tag.toLowerCase()}.</div>
+    </div>
+  `;
+}).join('');
+
+tabbar.querySelectorAll('.tabbtn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    tabbar.querySelectorAll('.tabbtn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    panels.querySelectorAll('.tabpanel').forEach(p=>p.classList.remove('active'));
+    panels.querySelector(`.tabpanel[data-panel="${btn.dataset.theme}"]`).classList.add('active');
+  });
+});
+
+panels.addEventListener('click', (e)=>{
+  const btn = e.target.closest('.pf-btn');
+  if(!btn) return;
+  const group = btn.closest('.pubfilters');
+  group.querySelectorAll('.pf-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const panel = group.closest('.tabpanel');
+  const pub = btn.dataset.pub;
+  panel.querySelectorAll('.entry').forEach(entry=>{
+    entry.style.display = (pub==='all' || entry.dataset.pub===pub) ? '' : 'none';
+  });
+});
+</script>
+</body>
+</html>
